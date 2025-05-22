@@ -11,8 +11,8 @@
   DTS:LocaleID="1049"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="55"
-  DTS:VersionGUID="{0848CC55-5AC7-4778-BAE0-6020C007A6CE}">
+  DTS:VersionBuild="58"
+  DTS:VersionGUID="{FEA7E926-8106-4F4F-B099-622AF05FC56D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -188,6 +188,18 @@
           DTS:ConnectionString="Data Source=localhost;Initial Catalog=Access;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package-{F26FDA28-79E6-4ACF-B48B-D4BC787F7455}localhost.Access;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.tempdb]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BAADD3EA-268E-462D-AD4C-538815659EF6}"
+      DTS:ObjectName="LocalHost.tempdb">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=tempdb;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package-{BAADD3EA-268E-462D-AD4C-538815659EF6}LocalHost.tempdb;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
@@ -195,7 +207,6 @@
       DTS:refId="Package\Extract data from source"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Задача потока данных"
-      DTS:Disabled="True"
       DTS:DTSID="{5B6C8195-939D-4E9C-A50D-2266012E66E1}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -221,7 +232,7 @@
                 <property
                   dataType="System.String"
                   description="Указывает имя объекта базы данных, используемого для открытия набора строк."
-                  name="OpenRowset">[Client]</property>
+                  name="OpenRowset">[ClentDB]</property>
                 <property
                   dataType="System.String"
                   description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
@@ -264,8 +275,8 @@
               <connections>
                 <connection
                   refId="Package\Extract data from source\ClentDB.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.Access]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.Access]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.tempdb]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.tempdb]"
                   description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
                   name="OleDbConnection" />
               </connections>
@@ -814,7 +825,7 @@
                 <property
                   dataType="System.String"
                   description="Указывает имя объекта базы данных, используемого для открытия набора строк."
-                  name="OpenRowset">[Order]</property>
+                  name="OpenRowset">[OrderDb]</property>
                 <property
                   dataType="System.String"
                   description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
@@ -857,8 +868,8 @@
               <connections>
                 <connection
                   refId="Package\Extract data from source\OrderDb.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.Access]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.Access]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.tempdb]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.tempdb]"
                   description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
                   name="OleDbConnection" />
               </connections>
@@ -969,7 +980,7 @@
                 <property
                   dataType="System.String"
                   description="Указывает имя объекта базы данных, используемого для открытия набора строк."
-                  name="OpenRowset">[ProductItem]</property>
+                  name="OpenRowset">[ProductItemdDb]</property>
                 <property
                   dataType="System.String"
                   description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
@@ -1012,8 +1023,8 @@
               <connections>
                 <connection
                   refId="Package\Extract data from source\ProductItemdDb.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.Access]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.Access]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.tempdb]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.tempdb]"
                   description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
                   name="OleDbConnection" />
               </connections>
@@ -2578,7 +2589,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                 <property
                   dataType="System.String"
                   description="Указывает имя объекта базы данных, используемого для открытия набора строк."
-                  name="OpenRowset">[Server]</property>
+                  name="OpenRowset">[ServerDb]</property>
                 <property
                   dataType="System.String"
                   description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
@@ -2621,8 +2632,8 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
               <connections>
                 <connection
                   refId="Package\Extract data from source\ServerDb.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.Access]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.Access]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.tempdb]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.tempdb]"
                   description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
                   name="OleDbConnection" />
               </connections>
@@ -2713,7 +2724,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                 <property
                   dataType="System.String"
                   description="Указывает имя объекта базы данных, используемого для открытия набора строк."
-                  name="OpenRowset">[dbo].[Product]</property>
+                  name="OpenRowset">[Назначение "OLE DB"]</property>
                 <property
                   dataType="System.String"
                   description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
@@ -2756,8 +2767,8 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
               <connections>
                 <connection
                   refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.Access]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.Access]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.tempdb]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.tempdb]"
                   description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
                   name="OleDbConnection" />
               </connections>
@@ -2773,7 +2784,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[product_id]"
                       cachedDataType="i4"
                       cachedName="product_id"
-                      externalMetadataColumnId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[ProductID]"
+                      externalMetadataColumnId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[product_id]"
                       lineageId="Package\Extract data from source\Script Component.Outputs[Output 0].Columns[product_id]" />
                     <inputColumn
                       refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[name]"
@@ -2781,20 +2792,20 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="name"
-                      externalMetadataColumnId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Name]"
+                      externalMetadataColumnId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[name]"
                       lineageId="Package\Extract data from source\Script Component.Outputs[Output 0].Columns[name]" />
                     <inputColumn
                       refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[price]"
                       cachedDataType="numeric"
                       cachedName="price"
                       cachedPrecision="18"
-                      externalMetadataColumnId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Price]"
+                      externalMetadataColumnId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[price]"
                       lineageId="Package\Extract data from source\Script Component.Outputs[Output 0].Columns[price]" />
                     <inputColumn
                       refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[stock_quantity]"
                       cachedDataType="i4"
                       cachedName="stock_quantity"
-                      externalMetadataColumnId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[StockQuantity]"
+                      externalMetadataColumnId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[stock_quantity]"
                       lineageId="Package\Extract data from source\Script Component.Outputs[Output 0].Columns[stock_quantity]" />
                     <inputColumn
                       refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[supplier_name]"
@@ -2802,36 +2813,36 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="supplier_name"
-                      externalMetadataColumnId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[SupplierName]"
+                      externalMetadataColumnId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[supplier_name]"
                       lineageId="Package\Extract data from source\Script Component.Outputs[Output 0].Columns[supplier_name]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[ProductID]"
+                      refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[product_id]"
                       dataType="i4"
-                      name="ProductID" />
+                      name="product_id" />
                     <externalMetadataColumn
-                      refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Name]"
+                      refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[name]"
                       codePage="1251"
                       dataType="str"
                       length="50"
-                      name="Name" />
+                      name="name" />
                     <externalMetadataColumn
-                      refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Price]"
+                      refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[price]"
                       dataType="numeric"
-                      name="Price"
+                      name="price"
                       precision="18" />
                     <externalMetadataColumn
-                      refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[StockQuantity]"
+                      refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[stock_quantity]"
                       dataType="i4"
-                      name="StockQuantity" />
+                      name="stock_quantity" />
                     <externalMetadataColumn
-                      refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[SupplierName]"
+                      refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[supplier_name]"
                       codePage="1251"
                       dataType="str"
                       length="50"
-                      name="SupplierName" />
+                      name="supplier_name" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -3096,6 +3107,19 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Extract data from source\ProductItems">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract data from source\Назначение &quot;OLE DB&quot;">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
