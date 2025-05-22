@@ -11,8 +11,8 @@
   DTS:LocaleID="1049"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="58"
-  DTS:VersionGUID="{FEA7E926-8106-4F4F-B099-622AF05FC56D}">
+  DTS:VersionBuild="70"
+  DTS:VersionGUID="{F43EB597-902B-4D90-B1B2-3A2A687714E9}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -957,6 +957,169 @@
                       refId="Package\Extract data from source\OrderDb.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Extract data from source\OrderDb.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract data from source\Product"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Назначение &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;4"
+              description="Назначение &quot;OLE DB&quot;"
+              name="Product"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowset">[Product]</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Команда SQL для выполнения."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает используемый режим доступа к базе данных."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Указывает, должны ли значения в столбцах идентификаторов копироваться в назначение. Если свойство имеет значение false, значения в столбцах идентификаторов будут созданы автоматически в месте назначения. Применяется только в том случае, если включена быстрая загрузка."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Указывает, будут ли в назначение вставляться значения NULL для столбцов, содержащих их. Значение false показывает, что если столбец имеет значение NULL, то в назначение будет вставлено его значение по умолчанию. Применяется только в случае, если включена быстрая загрузка."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Задает параметры быстрой загрузки. Применяется только в том случае, если включена быстрая загрузка."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Задает, когда выдаются сообщения о фиксации транзакции в ходе вставки данных. Значение 0 задает, что по окончании вставки данных будет выдано одно сообщение о фиксации транзакции. Применяется только в том случае, если включена быстрая загрузка."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract data from source\Product.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.tempdb]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.tempdb]"
+                  description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract data from source\Product.Inputs[Вход назначения &quot;OLE DB&quot;]"
+                  errorOrTruncationOperation="Вставить"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Вход назначения &quot;OLE DB&quot;">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract data from source\Product.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[product_id]"
+                      cachedDataType="i4"
+                      cachedName="product_id"
+                      externalMetadataColumnId="Package\Extract data from source\Product.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[product_id]"
+                      lineageId="Package\Extract data from source\Script Component.Outputs[Output 0].Columns[product_id]" />
+                    <inputColumn
+                      refId="Package\Extract data from source\Product.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[name]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="name"
+                      externalMetadataColumnId="Package\Extract data from source\Product.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[name]"
+                      lineageId="Package\Extract data from source\Script Component.Outputs[Output 0].Columns[name]" />
+                    <inputColumn
+                      refId="Package\Extract data from source\Product.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[price]"
+                      cachedDataType="numeric"
+                      cachedName="price"
+                      cachedPrecision="18"
+                      externalMetadataColumnId="Package\Extract data from source\Product.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[price]"
+                      lineageId="Package\Extract data from source\Script Component.Outputs[Output 0].Columns[price]" />
+                    <inputColumn
+                      refId="Package\Extract data from source\Product.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[stock_quantity]"
+                      cachedDataType="i4"
+                      cachedName="stock_quantity"
+                      externalMetadataColumnId="Package\Extract data from source\Product.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[stock_quantity]"
+                      lineageId="Package\Extract data from source\Script Component.Outputs[Output 0].Columns[stock_quantity]" />
+                    <inputColumn
+                      refId="Package\Extract data from source\Product.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[supplier_name]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="supplier_name"
+                      externalMetadataColumnId="Package\Extract data from source\Product.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[supplier_name]"
+                      lineageId="Package\Extract data from source\Script Component.Outputs[Output 0].Columns[supplier_name]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract data from source\Product.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[product_id]"
+                      dataType="i4"
+                      name="product_id" />
+                    <externalMetadataColumn
+                      refId="Package\Extract data from source\Product.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[name]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\Extract data from source\Product.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[price]"
+                      dataType="numeric"
+                      name="price"
+                      precision="18" />
+                    <externalMetadataColumn
+                      refId="Package\Extract data from source\Product.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[stock_quantity]"
+                      dataType="i4"
+                      name="stock_quantity" />
+                    <externalMetadataColumn
+                      refId="Package\Extract data from source\Product.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[supplier_name]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      name="supplier_name" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract data from source\Product.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Вывод ошибок назначения &quot;OLE DB&quot;"
+                  synchronousInputId="Package\Extract data from source\Product.Inputs[Вход назначения &quot;OLE DB&quot;]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract data from source\Product.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract data from source\Product.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract data from source\Product.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract data from source\Product.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -2708,174 +2871,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                 </output>
               </outputs>
             </component>
-            <component
-              refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="Назначение &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;4"
-              description="Назначение &quot;OLE DB&quot;"
-              name="Назначение &quot;OLE DB&quot;"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Указывает имя объекта базы данных, используемого для открытия набора строк."
-                  name="OpenRowset">[Назначение "OLE DB"]</property>
-                <property
-                  dataType="System.String"
-                  description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="Команда SQL для выполнения."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
-                  name="DefaultCodePage">1251</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Указывает используемый режим доступа к базе данных."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Указывает, должны ли значения в столбцах идентификаторов копироваться в назначение. Если свойство имеет значение false, значения в столбцах идентификаторов будут созданы автоматически в месте назначения. Применяется только в том случае, если включена быстрая загрузка."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Указывает, будут ли в назначение вставляться значения NULL для столбцов, содержащих их. Значение false показывает, что если столбец имеет значение NULL, то в назначение будет вставлено его значение по умолчанию. Применяется только в случае, если включена быстрая загрузка."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Задает параметры быстрой загрузки. Применяется только в том случае, если включена быстрая загрузка."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Задает, когда выдаются сообщения о фиксации транзакции в ходе вставки данных. Значение 0 задает, что по окончании вставки данных будет выдано одно сообщение о фиксации транзакции. Применяется только в том случае, если включена быстрая загрузка."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[LocalHost.tempdb]"
-                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.tempdb]"
-                  description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;]"
-                  errorOrTruncationOperation="Вставить"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="Вход назначения &quot;OLE DB&quot;">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[product_id]"
-                      cachedDataType="i4"
-                      cachedName="product_id"
-                      externalMetadataColumnId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[product_id]"
-                      lineageId="Package\Extract data from source\Script Component.Outputs[Output 0].Columns[product_id]" />
-                    <inputColumn
-                      refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[name]"
-                      cachedCodepage="1251"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="name"
-                      externalMetadataColumnId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[name]"
-                      lineageId="Package\Extract data from source\Script Component.Outputs[Output 0].Columns[name]" />
-                    <inputColumn
-                      refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[price]"
-                      cachedDataType="numeric"
-                      cachedName="price"
-                      cachedPrecision="18"
-                      externalMetadataColumnId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[price]"
-                      lineageId="Package\Extract data from source\Script Component.Outputs[Output 0].Columns[price]" />
-                    <inputColumn
-                      refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[stock_quantity]"
-                      cachedDataType="i4"
-                      cachedName="stock_quantity"
-                      externalMetadataColumnId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[stock_quantity]"
-                      lineageId="Package\Extract data from source\Script Component.Outputs[Output 0].Columns[stock_quantity]" />
-                    <inputColumn
-                      refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[supplier_name]"
-                      cachedCodepage="1251"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="supplier_name"
-                      externalMetadataColumnId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[supplier_name]"
-                      lineageId="Package\Extract data from source\Script Component.Outputs[Output 0].Columns[supplier_name]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[product_id]"
-                      dataType="i4"
-                      name="product_id" />
-                    <externalMetadataColumn
-                      refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[name]"
-                      codePage="1251"
-                      dataType="str"
-                      length="50"
-                      name="name" />
-                    <externalMetadataColumn
-                      refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[price]"
-                      dataType="numeric"
-                      name="price"
-                      precision="18" />
-                    <externalMetadataColumn
-                      refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[stock_quantity]"
-                      dataType="i4"
-                      name="stock_quantity" />
-                    <externalMetadataColumn
-                      refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[supplier_name]"
-                      codePage="1251"
-                      dataType="str"
-                      length="50"
-                      name="supplier_name" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Вывод ошибок назначения &quot;OLE DB&quot;"
-                  synchronousInputId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
           </components>
           <paths>
             <path
               refId="Package\Extract data from source.Paths[Output 0]"
-              endId="Package\Extract data from source\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;]"
+              endId="Package\Extract data from source\Product.Inputs[Вход назначения &quot;OLE DB&quot;]"
               name="Output 0"
               startId="Package\Extract data from source\Script Component.Outputs[Output 0]" />
             <path
@@ -2902,7 +2902,2545 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TaskCreateTempTables"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5308e959-3ca4-449f-8083-33e2e101d226}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TaskCreateTempTables"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BAADD3EA-268E-462D-AD4C-538815659EF6}"
+          SQLTask:SqlStatementSource="-- Таблица TempSuppliers&#xA;IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TempSuppliers]') AND type in (N'U'))&#xA;BEGIN&#xA;    CREATE TABLE TempSuppliers (&#xA;        SupplierID INT IDENTITY(1,1) PRIMARY KEY,&#xA;        SupplierName VARCHAR(100) UNIQUE&#xA;    );&#xA;END&#xA;GO&#xA;&#xA;-- Таблица TempProducts&#xA;IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TempProducts]') AND type in (N'U'))&#xA;BEGIN&#xA;    CREATE TABLE TempProducts (&#xA;        ProductID INT PRIMARY KEY,&#xA;        Name VARCHAR(100),&#xA;        Price DECIMAL(10,2),&#xA;        StockQuantity INT,&#xA;        SupplierID INT,&#xA;        FOREIGN KEY (SupplierID) REFERENCES TempSuppliers(SupplierID)&#xA;    );&#xA;END&#xA;GO&#xA;&#xA;-- Таблица TempClients&#xA;IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TempClients]') AND type in (N'U'))&#xA;BEGIN&#xA;    CREATE TABLE TempClients (&#xA;        client_id INT PRIMARY KEY,&#xA;        name VARCHAR(50),&#xA;        email VARCHAR(100),&#xA;        phone VARCHAR(20),&#xA;        registration_date DATE,&#xA;        country VARCHAR(100)&#xA;    );&#xA;END&#xA;GO&#xA;&#xA;-- Таблица TempOrders&#xA;IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TempOrders]') AND type in (N'U'))&#xA;BEGIN&#xA;    CREATE TABLE TempOrders (&#xA;        Order_id INT PRIMARY KEY,&#xA;        Client_id INT,&#xA;        Order_date DATE,&#xA;        Total_amount DECIMAL(10,2),&#xA;        Status BIT,&#xA;        FOREIGN KEY (Client_id) REFERENCES TempClients(client_id)&#xA;    );&#xA;END&#xA;GO&#xA;&#xA;-- Таблица TempOrderItems&#xA;IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TempOrderItems]') AND type in (N'U'))&#xA;BEGIN&#xA;    CREATE TABLE TempOrderItems (&#xA;        order_item_id INT PRIMARY KEY,&#xA;        order_id INT,&#xA;        product_id INT,&#xA;        quantity INT,&#xA;        unit_price DECIMAL(10,2),&#xA;        discount DECIMAL(10,2),&#xA;        FOREIGN KEY (order_id) REFERENCES TempOrders(Order_id),&#xA;        FOREIGN KEY (product_id) REFERENCES TempProducts(ProductID)&#xA;    );&#xA;END&#xA;GO&#xA;&#xA;-- Таблица TempServerLogs&#xA;IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TempServerLogs]') AND type in (N'U'))&#xA;BEGIN&#xA;    CREATE TABLE TempServerLogs (&#xA;        server_id INT PRIMARY KEY,&#xA;        user_id INT,&#xA;        last_join_time TIME,&#xA;        FOREIGN KEY (user_id) REFERENCES TempClients(client_id)&#xA;    );&#xA;END&#xA;GO&#xA;&#xA;-- Таблица TempErrorLog&#xA;IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TempErrorLog]') AND type in (N'U'))&#xA;BEGIN&#xA;    CREATE TABLE TempErrorLog (&#xA;        ErrorID INT IDENTITY(1,1) PRIMARY KEY,&#xA;        Source VARCHAR(100),&#xA;        ErrorMessage VARCHAR(MAX),&#xA;        ErrorDate DATETIME DEFAULT GETDATE()&#xA;    );&#xA;END&#xA;GO&#xA;&#xA;SELECT client_id FROM TempClients&#xA;GO&#xA;&#xA;IF NOT EXISTS (&#xA;    SELECT 1 &#xA;    FROM sys.columns &#xA;    WHERE Name = N'total_cost' &#xA;      AND Object_ID = Object_ID(N'dbo.TempOrderItems')&#xA;)&#xA;BEGIN&#xA;    ALTER TABLE dbo.TempOrderItems &#xA;    ADD total_cost NUMERIC(22,2) NULL;&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Transform"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Задача потока данных"
+      DTS:DTSID="{3780174A-0621-4BB8-AB25-AC0BEB0BCE17}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Transform"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Transform\ClientSource"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Источник &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;7"
+              description="Источник &quot;OLE DB&quot;"
+              name="ClientSource"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowset">[dbo].[ClentDB]</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Команда SQL для выполнения."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Переменная, содержащая команду SQL для выполнения."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает используемый режим доступа к базе данных."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Сопоставления между параметрами в команде SQL и переменными."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Transform\ClientSource.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.tempdb]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.tempdb]"
+                  description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;]"
+                  name="Выход источника &quot;OLE DB&quot;">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[&quot;client_id&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[&quot;client_id&quot;]"
+                      length="50"
+                      lineageId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[&quot;client_id&quot;]"
+                      name="&quot;client_id&quot;"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[&quot;name&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[&quot;name&quot;]"
+                      length="50"
+                      lineageId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[&quot;name&quot;]"
+                      name="&quot;name&quot;"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[&quot;email&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[&quot;email&quot;]"
+                      length="50"
+                      lineageId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[&quot;email&quot;]"
+                      name="&quot;email&quot;"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[&quot;phone&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[&quot;phone&quot;]"
+                      length="50"
+                      lineageId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[&quot;phone&quot;]"
+                      name="&quot;phone&quot;"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[&quot;registration_date&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[&quot;registration_date&quot;]"
+                      length="50"
+                      lineageId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[&quot;registration_date&quot;]"
+                      name="&quot;registration_date&quot;"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[&quot;country&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[&quot;country&quot;]"
+                      length="50"
+                      lineageId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[&quot;country&quot;]"
+                      name="&quot;country&quot;"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[&quot;client_id&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      name="&quot;client_id&quot;" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[&quot;name&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      name="&quot;name&quot;" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[&quot;email&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      name="&quot;email&quot;" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[&quot;phone&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      name="&quot;phone&quot;" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[&quot;registration_date&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      name="&quot;registration_date&quot;" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[&quot;country&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      name="&quot;country&quot;" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Transform\ClientSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;]"
+                  isErrorOut="true"
+                  name="Вывод ошибок источника &quot;OLE DB&quot;">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\ClientSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[&quot;client_id&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Transform\ClientSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[&quot;client_id&quot;]"
+                      name="&quot;client_id&quot;" />
+                    <outputColumn
+                      refId="Package\Transform\ClientSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[&quot;name&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Transform\ClientSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[&quot;name&quot;]"
+                      name="&quot;name&quot;" />
+                    <outputColumn
+                      refId="Package\Transform\ClientSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[&quot;email&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Transform\ClientSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[&quot;email&quot;]"
+                      name="&quot;email&quot;" />
+                    <outputColumn
+                      refId="Package\Transform\ClientSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[&quot;phone&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Transform\ClientSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[&quot;phone&quot;]"
+                      name="&quot;phone&quot;" />
+                    <outputColumn
+                      refId="Package\Transform\ClientSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[&quot;registration_date&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Transform\ClientSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[&quot;registration_date&quot;]"
+                      name="&quot;registration_date&quot;" />
+                    <outputColumn
+                      refId="Package\Transform\ClientSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[&quot;country&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Transform\ClientSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[&quot;country&quot;]"
+                      name="&quot;country&quot;" />
+                    <outputColumn
+                      refId="Package\Transform\ClientSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transform\ClientSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transform\ClientSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transform\ClientSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transform\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Transform\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Transform\Data Conversion.Inputs[Data Conversion Input].Columns[supplier_name]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="supplier_name"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Transform\Сортировка.Outputs[Выход сортировки].Columns[supplier_name]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transform\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Transform\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of supplier_name]"
+                      codePage="1251"
+                      dataType="str"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Transform\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of supplier_name]"
+                      name="Copy of supplier_name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает входной столбец, служащий источником данных для преобразования."
+                          name="SourceInputColumnLineageID">#{Package\Transform\Сортировка.Outputs[Выход сортировки].Columns[supplier_name]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Указывает, используются ли в столбце более производительные, не зависящие от локалей процедуры синтаксического анализа."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Transform\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Transform\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transform\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transform\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transform\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transform\SupplierSource"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Источник &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;7"
+              description="Источник &quot;OLE DB&quot;"
+              name="SupplierSource"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowset">[dbo].[Product]</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Команда SQL для выполнения."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Переменная, содержащая команду SQL для выполнения."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает используемый режим доступа к базе данных."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Сопоставления между параметрами в команде SQL и переменными."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Transform\SupplierSource.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.tempdb]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.tempdb]"
+                  description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Transform\SupplierSource.Outputs[Выход источника &quot;OLE DB&quot;]"
+                  name="Выход источника &quot;OLE DB&quot;">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\SupplierSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[product_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform\SupplierSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[product_id]"
+                      lineageId="Package\Transform\SupplierSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[product_id]"
+                      name="product_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transform\SupplierSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[name]"
+                      codePage="1251"
+                      dataType="str"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform\SupplierSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[name]"
+                      length="50"
+                      lineageId="Package\Transform\SupplierSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[name]"
+                      name="name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transform\SupplierSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[price]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform\SupplierSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[price]"
+                      lineageId="Package\Transform\SupplierSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[price]"
+                      name="price"
+                      precision="18"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transform\SupplierSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[stock_quantity]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform\SupplierSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[stock_quantity]"
+                      lineageId="Package\Transform\SupplierSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[stock_quantity]"
+                      name="stock_quantity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transform\SupplierSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[supplier_name]"
+                      codePage="1251"
+                      dataType="str"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform\SupplierSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[supplier_name]"
+                      length="50"
+                      lineageId="Package\Transform\SupplierSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[supplier_name]"
+                      name="supplier_name"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Transform\SupplierSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[product_id]"
+                      dataType="i4"
+                      name="product_id" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\SupplierSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[name]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\SupplierSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[price]"
+                      dataType="numeric"
+                      name="price"
+                      precision="18" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\SupplierSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[stock_quantity]"
+                      dataType="i4"
+                      name="stock_quantity" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\SupplierSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[supplier_name]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      name="supplier_name" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Transform\SupplierSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;]"
+                  isErrorOut="true"
+                  name="Вывод ошибок источника &quot;OLE DB&quot;">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\SupplierSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[product_id]"
+                      dataType="i4"
+                      lineageId="Package\Transform\SupplierSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[product_id]"
+                      name="product_id" />
+                    <outputColumn
+                      refId="Package\Transform\SupplierSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[name]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Transform\SupplierSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[name]"
+                      name="name" />
+                    <outputColumn
+                      refId="Package\Transform\SupplierSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[price]"
+                      dataType="numeric"
+                      lineageId="Package\Transform\SupplierSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[price]"
+                      name="price"
+                      precision="18" />
+                    <outputColumn
+                      refId="Package\Transform\SupplierSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[stock_quantity]"
+                      dataType="i4"
+                      lineageId="Package\Transform\SupplierSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[stock_quantity]"
+                      name="stock_quantity" />
+                    <outputColumn
+                      refId="Package\Transform\SupplierSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[supplier_name]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Transform\SupplierSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[supplier_name]"
+                      name="supplier_name" />
+                    <outputColumn
+                      refId="Package\Transform\SupplierSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transform\SupplierSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transform\SupplierSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transform\SupplierSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transform\TempClient"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="TempClient"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[TempClients]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Transform\TempClient.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.tempdb]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.tempdb]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Transform\TempClient.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Transform\TempClient.Inputs[OLE DB Destination Input].Columns[registration_date]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="registration_date"
+                      externalMetadataColumnId="Package\Transform\TempClient.Inputs[OLE DB Destination Input].ExternalColumns[registration_date]"
+                      lineageId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[registration_date]" />
+                    <inputColumn
+                      refId="Package\Transform\TempClient.Inputs[OLE DB Destination Input].Columns[&quot;client_id&quot;]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="&quot;client_id&quot;"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Transform\TempClient.Inputs[OLE DB Destination Input].ExternalColumns[client_id]"
+                      lineageId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[&quot;client_id&quot;]" />
+                    <inputColumn
+                      refId="Package\Transform\TempClient.Inputs[OLE DB Destination Input].Columns[&quot;name&quot;]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="&quot;name&quot;"
+                      externalMetadataColumnId="Package\Transform\TempClient.Inputs[OLE DB Destination Input].ExternalColumns[name]"
+                      lineageId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[&quot;name&quot;]" />
+                    <inputColumn
+                      refId="Package\Transform\TempClient.Inputs[OLE DB Destination Input].Columns[Copy of phone]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="Copy of phone"
+                      externalMetadataColumnId="Package\Transform\TempClient.Inputs[OLE DB Destination Input].ExternalColumns[phone]"
+                      lineageId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные преобразования данных].Columns[Copy of phone]" />
+                    <inputColumn
+                      refId="Package\Transform\TempClient.Inputs[OLE DB Destination Input].Columns[Copy of &quot;email&quot;]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copy of &quot;email&quot;"
+                      externalMetadataColumnId="Package\Transform\TempClient.Inputs[OLE DB Destination Input].ExternalColumns[email]"
+                      lineageId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные преобразования данных].Columns[Copy of &quot;email&quot;]" />
+                    <inputColumn
+                      refId="Package\Transform\TempClient.Inputs[OLE DB Destination Input].Columns[&quot;country&quot;]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="&quot;country&quot;"
+                      externalMetadataColumnId="Package\Transform\TempClient.Inputs[OLE DB Destination Input].ExternalColumns[country]"
+                      lineageId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[&quot;country&quot;]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Transform\TempClient.Inputs[OLE DB Destination Input].ExternalColumns[client_id]"
+                      dataType="i4"
+                      name="client_id" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\TempClient.Inputs[OLE DB Destination Input].ExternalColumns[name]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\TempClient.Inputs[OLE DB Destination Input].ExternalColumns[email]"
+                      codePage="1251"
+                      dataType="str"
+                      length="100"
+                      name="email" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\TempClient.Inputs[OLE DB Destination Input].ExternalColumns[phone]"
+                      codePage="1251"
+                      dataType="str"
+                      length="20"
+                      name="phone" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\TempClient.Inputs[OLE DB Destination Input].ExternalColumns[registration_date]"
+                      dataType="dbDate"
+                      name="registration_date" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\TempClient.Inputs[OLE DB Destination Input].ExternalColumns[country]"
+                      codePage="1251"
+                      dataType="str"
+                      length="100"
+                      name="country" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transform\TempClient.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Transform\TempClient.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\TempClient.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transform\TempClient.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transform\TempClient.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transform\TempClient.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transform\TempSupplier"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="TempSupplier"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[TempSuppliers]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Transform\TempSupplier.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.tempdb]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.tempdb]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Transform\TempSupplier.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Transform\TempSupplier.Inputs[OLE DB Destination Input].Columns[Copy of supplier_name]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copy of supplier_name"
+                      externalMetadataColumnId="Package\Transform\TempSupplier.Inputs[OLE DB Destination Input].ExternalColumns[SupplierName]"
+                      lineageId="Package\Transform\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of supplier_name]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Transform\TempSupplier.Inputs[OLE DB Destination Input].ExternalColumns[SupplierID]"
+                      dataType="i4"
+                      name="SupplierID" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\TempSupplier.Inputs[OLE DB Destination Input].ExternalColumns[SupplierName]"
+                      codePage="1251"
+                      dataType="str"
+                      length="100"
+                      name="SupplierName" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transform\TempSupplier.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Transform\TempSupplier.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\TempSupplier.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transform\TempSupplier.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transform\TempSupplier.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transform\TempSupplier.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transform\Преобразование данных"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Преобразование данных;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;0"
+              description="Преобразование данных"
+              name="Преобразование данных"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Transform\Преобразование данных.Inputs[Входные данные преобразования данных]"
+                  name="Входные данные преобразования данных">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Transform\Преобразование данных.Inputs[Входные данные преобразования данных].Columns[&quot;registration_date&quot;]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="&quot;registration_date&quot;"
+                      lineageId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[&quot;registration_date&quot;]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transform\Преобразование данных.Outputs[Выходные данные преобразования данных]"
+                  exclusionGroup="1"
+                  name="Выходные данные преобразования данных"
+                  synchronousInputId="Package\Transform\Преобразование данных.Inputs[Входные данные преобразования данных]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\Преобразование данных.Outputs[Выходные данные преобразования данных].Columns[Copy of registration_date]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Transform\Преобразование данных.Outputs[Выходные данные преобразования данных].Columns[Copy of registration_date]"
+                      name="Copy of registration_date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает входной столбец, служащий источником данных для преобразования."
+                          name="SourceInputColumnLineageID">#{Package\Transform\ClientSource.Outputs[Выход источника "OLE DB"].Columns["registration_date"]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Указывает, используются ли в столбце более производительные, не зависящие от локалей процедуры синтаксического анализа."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Transform\Преобразование данных.Outputs[Выходные данные ошибок преобразования данных]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Выходные данные ошибок преобразования данных"
+                  synchronousInputId="Package\Transform\Преобразование данных.Inputs[Входные данные преобразования данных]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\Преобразование данных.Outputs[Выходные данные ошибок преобразования данных].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transform\Преобразование данных.Outputs[Выходные данные ошибок преобразования данных].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transform\Преобразование данных.Outputs[Выходные данные ошибок преобразования данных].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transform\Преобразование данных.Outputs[Выходные данные ошибок преобразования данных].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transform\Преобразование данных 1"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Преобразование данных;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;0"
+              description="Преобразование данных"
+              name="Преобразование данных 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Transform\Преобразование данных 1.Inputs[Входные данные преобразования данных]"
+                  name="Входные данные преобразования данных">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Transform\Преобразование данных 1.Inputs[Входные данные преобразования данных].Columns[phone]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="phone"
+                      lineageId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[phone]" />
+                    <inputColumn
+                      refId="Package\Transform\Преобразование данных 1.Inputs[Входные данные преобразования данных].Columns[&quot;email&quot;]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="&quot;email&quot;"
+                      lineageId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[&quot;email&quot;]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные преобразования данных]"
+                  exclusionGroup="1"
+                  name="Выходные данные преобразования данных"
+                  synchronousInputId="Package\Transform\Преобразование данных 1.Inputs[Входные данные преобразования данных]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные преобразования данных].Columns[Copy of phone]"
+                      codePage="1251"
+                      dataType="str"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные преобразования данных].Columns[Copy of phone]"
+                      name="Copy of phone"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает входной столбец, служащий источником данных для преобразования."
+                          name="SourceInputColumnLineageID">#{Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[phone]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Указывает, используются ли в столбце более производительные, не зависящие от локалей процедуры синтаксического анализа."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные преобразования данных].Columns[Copy of &quot;email&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные преобразования данных].Columns[Copy of &quot;email&quot;]"
+                      name="Copy of &quot;email&quot;"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает входной столбец, служащий источником данных для преобразования."
+                          name="SourceInputColumnLineageID">#{Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns["email"]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Указывает, используются ли в столбце более производительные, не зависящие от локалей процедуры синтаксического анализа."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные ошибок преобразования данных]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Выходные данные ошибок преобразования данных"
+                  synchronousInputId="Package\Transform\Преобразование данных 1.Inputs[Входные данные преобразования данных]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные ошибок преобразования данных].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные ошибок преобразования данных].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные ошибок преобразования данных].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные ошибок преобразования данных].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transform\Проверка валидности почты"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;13"
+              description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
+              name="Проверка валидности почты"
+              version="13">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Stores the source code of the component"
+                  isArray="true"
+                  name="SourceCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="30">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[ComponentWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services component wrapper
+*  This module defines the base class for your component
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+
+public class UserComponent: ScriptComponent
+{
+    public Connections Connections;
+    public Variables Variables;
+    public UserComponent()
+    {
+        Connections = new Connections(this);
+        Variables = new Variables(this);
+    }
+
+    public override void ProcessInput(int InputID, string InputName, PipelineBuffer Buffer, OutputNameMap OutputMap)
+    {
+
+        if (InputName.Equals(@"Input 0", StringComparison.Ordinal))
+        {
+            Input0_ProcessInput(new Input0Buffer(Buffer, GetColumnIndexes(InputID), OutputMap));
+        }
+
+    }
+
+    public virtual void Input0_ProcessInput(Input0Buffer Buffer)
+    {
+        while (Buffer.NextRow())
+        {
+            Input0_ProcessInputRow(Buffer);
+        }
+    }
+
+    public virtual void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+    }
+
+}
+
+public class Connections
+{
+    ScriptComponent ParentComponent;
+
+    public Connections(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+
+public class Variables
+{
+    ScriptComponent ParentComponent;
+
+    public Variables(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.resx]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[main.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[#region Help:  Introduction to the Script Component
+/* The Script Component allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services data flow.
+ *
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script component. */
+#endregion
+
+#region Namespaces
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+using System;
+using System.Data;
+using System.Text.RegularExpressions;
+#endregion
+
+/// <summary>
+/// This is the class to which to add your code.  Do not change the name, attributes, or parent
+/// of this class.
+/// </summary>
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
+public class ScriptMain : UserComponent
+{
+    #region Help:  Using Integration Services variables and parameters
+    /* To use a variable in this script, first ensure that the variable has been added to
+     * either the list contained in the ReadOnlyVariables property or the list contained in
+     * the ReadWriteVariables property of this script component, according to whether or not your
+     * code needs to write into the variable.  To do so, save this script, close this instance of
+     * Visual Studio, and update the ReadOnlyVariables and ReadWriteVariables properties in the
+     * Script Transformation Editor window.
+     * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+     *
+     * Example of reading from a variable or parameter:
+     *  DateTime startTime = Variables.MyStartTime;
+     *
+     * Example of writing to a variable:
+     *  Variables.myStringVariable = "new value";
+     */
+    #endregion
+
+    #region Help:  Using Integration Services Connnection Managers
+    /* Some types of connection managers can be used in this script component.  See the help topic
+     * "Working with Connection Managers Programatically" for details.
+     *
+     * To use a connection manager in this script, first ensure that the connection manager has
+     * been added to either the list of connection managers on the Connection Managers page of the
+     * script component editor.  To add the connection manager, save this script, close this instance of
+     * Visual Studio, and add the Connection Manager to the list.
+     *
+     * If the component needs to hold a connection open while processing rows, override the
+     * AcquireConnections and ReleaseConnections methods.
+     * 
+     * Example of using an ADO.Net connection manager to acquire a SqlConnection:
+     *  object rawConnection = Connections.SalesDB.AcquireConnection(transaction);
+     *  SqlConnection salesDBConn = (SqlConnection)rawConnection;
+     *
+     * Example of using a File connection manager to acquire a file path:
+     *  object rawConnection = Connections.Prices_zip.AcquireConnection(transaction);
+     *  string filePath = (string)rawConnection;
+     *
+     * Example of releasing a connection manager:
+     *  Connections.SalesDB.ReleaseConnection(rawConnection);
+     */
+    #endregion
+
+    #region Help:  Firing Integration Services Events
+    /* This script component can fire events.
+     *
+     * Example of firing an error event:
+     *  ComponentMetaData.FireError(10, "Process Values", "Bad value", "", 0, out cancel);
+     *
+     * Example of firing an information event:
+     *  ComponentMetaData.FireInformation(10, "Process Values", "Processing has started", "", 0, fireAgain);
+     *
+     * Example of firing a warning event:
+     *  ComponentMetaData.FireWarning(10, "Process Values", "No rows were received", "", 0);
+     */
+    #endregion
+
+    /// <summary>
+    /// This method is called once, before rows begin to be processed in the data flow.
+    ///
+    /// You can remove this method if you don't need to do anything here.
+    /// </summary>
+    public override void PreExecute()
+    {
+        base.PreExecute();
+        /*
+         * Add your code here
+         */
+    }
+
+    /// <summary>
+    /// This method is called after all the rows have passed through this component.
+    ///
+    /// You can delete this method if you don't need to do anything here.
+    /// </summary>
+    public override void PostExecute()
+    {
+        base.PostExecute();
+        /*
+         * Add your code here
+         */
+    }
+
+    /// <summary>
+    /// This method is called once for every row that passes through the component from Input0.
+    ///
+    /// Example of reading a value from a column in the the row:
+    ///  string zipCode = Row.ZipCode
+    ///
+    /// Example of writing a value to a column in the row:
+    ///  Row.ZipCode = zipCode
+    /// </summary>
+    /// <param name="Row">The row that is currently passing through the component</param>
+    public override void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+
+        string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+        if (Regex.IsMatch(Row.email, emailPattern))
+        {
+            Row.IsValid = true;
+        }
+        else
+        {
+            Row.IsValid = false;
+            Row.ErrorMessage = "you wrote wrong email";
+        }
+    }
+}
+
+
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[BufferWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services buffer wrappers
+*  This module defines classes for accessing data flow buffers
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+
+public class Input0Buffer: ScriptBuffer
+
+{
+    public Input0Buffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public String email
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[0]);
+        }
+    }
+    public bool email_IsNull
+    {
+        get
+        {
+            return IsNull(0);
+        }
+    }
+
+    public String ErrorMessage
+    {
+        set
+        {
+            this[1] = value;
+        }
+    }
+    public bool ErrorMessage_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(1);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public Boolean IsValid
+    {
+        set
+        {
+            this[2] = value;
+        }
+    }
+    public bool IsValid_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(2);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    new public bool NextRow()
+    {
+        return base.NextRow();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_66590aa3f12948f29a0df31f22f59b00.Properties.Settings.get_Default():SC_66590aa3f12948f29a0df31f22f59b00.Properties.Sett" +
+    "ings")]
+
+namespace SC_66590aa3f12948f29a0df31f22f59b00.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_66590aa3f12948f29a0df31f22f59b00.csproj]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{29221E20-C341-4582-93DF-05ED31B8A446}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SC_66590aa3f12948f29a0df31f22f59b00</RootNamespace>
+    <AssemblyName>SC_3B36879D7CD74B50840A433278DE2487</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.TxScript, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.PipelineHost, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Compile Include="main.cs" />
+    <Compile Include="BufferWrapper.cs" />
+    <Compile Include="ComponentWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" />
+        <Host Name="ScriptComponent" IconIndex="0" />
+        <ProjectClient>
+          <HostIdentifier>SSIS_SC160</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Project]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+  <msb:PropertyGroup>
+    <msb:CodeName>SC_66590aa3f12948f29a0df31f22f59b00</msb:CodeName>
+    <msb:Language>msBuild</msb:Language>
+    <msb:DisplayName>SC_66590aa3f12948f29a0df31f22f59b00</msb:DisplayName>
+    <msb:ProjectId>{DD0E7921-71A9-46E7-ABF1-A58E17B0C08B}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="SC_66590aa3f12948f29a0df31f22f59b00.csproj" />
+    <msb:File Include="main.cs" />
+    <msb:File Include="BufferWrapper.cs" />
+    <msb:File Include="ComponentWrapper.cs" />
+    <msb:File Include="Properties\Settings.settings" />
+    <msb:File Include="Properties\AssemblyInfo.cs" />
+    <msb:File Include="Properties\Resources.resx" />
+    <msb:File Include="Properties\Resources.Designer.cs" />
+    <msb:File Include="Properties\Settings.Designer.cs" />
+  </msb:ItemGroup>
+</c:Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\AssemblyInfo.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("SC_66590aa3f12948f29a0df31f22f59b00")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("SC_66590aa3f12948f29a0df31f22f59b00")]
+[assembly: AssemblyCopyright("Copyright @  2025")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.0.0")]
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_66590aa3f12948f29a0df31f22f59b00.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_66590aa3f12948f29a0df31f22f59b00.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_66590aa3f12948f29a0df31f22f59b00.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace SC_66590aa3f12948f29a0df31f22f59b00.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SC_66590aa3f12948f29a0df31f22f59b00.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Stores the binary representation of the component"
+                  isArray="true"
+                  name="BinaryCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="2">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_3B36879D7CD74B50840A433278DE2487.dll]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAD5DL2gAAAAAAAAAAOAAIiALATAAABQAAAAIAAAAAAAA/jIA
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAKwyAABPAAAAAEAAAEgEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAABBMAAAAgAAAAFAAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAEgEAAAAQAAAAAYAAAAWAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAHAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAADg
+MgAAAAAAAEgAAAACAAUA/CEAAPgPAAABAAAAAAAAAPQxAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4CKBAAAAoqHgIoEQAACioTMAIALwAAAAEAABFyAQAAcAoD
+bwYAAAYGKBIAAAosCAMXbwoAAAYqAxZvCgAABgNyNwAAcG8IAAAGKh4CKA4AAAYqKgIDBAUoEwAA
+CipSAnsUAAAKAnsVAAAKFpRvFgAACioiAhYoFwAACiomAhcDKBgAAAoqWgMsCAIXKBkAAAoqcmMA
+AHBzGgAACno6AhgDjBwAAAEoGAAACipaAywIAhgoGQAACipyYwAAcHMaAAAKeh4CKBsAAAoqHgIo
+HAAACip+AigdAAAKAgJzEgAABn0BAAAEAgJzEwAABn0CAAAEKpIEcgABAHAabx4AAAosFQIFAgMo
+HwAACg4EcwUAAAZvEAAABipKKwcCA28RAAAGA28MAAAGLfEqBio6AiggAAAKAgN9AwAABCo6Aigg
+AAAKAgN9BAAABCoeAiggAAAKKq5+BQAABC0echABAHDQBwAAAighAAAKbyIAAApzIwAACoAFAAAE
+fgUAAAQqGn4GAAAEKh4CgAYAAAQqGn4HAAAEKh4CKCQAAAoqLnMZAAAGgAcAAAQqAAAAQlNKQgEA
+AQAAAAAADAAAAHY0LjAuMzAzMTkAAAAABQBsAAAAvAUAACN+AAAoBgAAjAYAACNTdHJpbmdzAAAA
+ALQMAACEAQAAI1VTADgOAAAQAAAAI0dVSUQAAABIDgAAsAEAACNCbG9iAAAAAAAAAAIAAAFXFaIB
+CQEAAAD6ATMAFgAAAQAAACEAAAAIAAAABwAAABoAAAARAAAAJAAAABAAAAABAAAAAwAAAAkAAAAK
+AAAAAQAAAAQAAAABAAAAAAAcAwEAAAAAAAYAAQKfBAYAlQKfBAYATQGMBA8AEwUAAAYAegHhAwYA
+5AHhAwYAxQHhAwYAfALhAwYAIQLhAwYAOgLhAwYAkQHhAwYArAHQAgoAVQKaAAoAXgSaAA4ATwSa
+AAoAKgSaAAoA+AWaAAYAuwWRAwYAMAGMBAYAbwS/BAYAHgTMAxIAAAH8AhIAYQH8AhIA6AC3AwYA
+FQGfBBIAeQaQBQYA8wORAwYApAORAwYA7QKRAwYADQSRAwYAuwCRAwYAbACRAwYAgwbhAwAAAAAl
+AAAAAAABAAEAAQAQAKwDAAAQAAEAAQABABAAQgQAADkAAQAFAAEAEADaBQAARQABAA4AAQAQAK8F
+AABJAAMAEgABABAAUQUAAEkABAATAAAAEADGBCIFSQAFABQAAAEQAIAFIgVhAAcAGAAGAK8FgAAG
+AFEFhAABAOgFiAABAOgFiAARAJgDjAARANgAkAARAEsAlABQIAAAAADGALMCBgABAFggAAAAAMYA
+vgIGAAEAYCAAAAAAxgBaBpgAAQCbIAAAAACGGH8EBgACAKMgAAAAAIYYfwQlAAIAriAAAAAAhggS
+A54ABQDDIAAAAACGCG8DRwAFAMwgAAAAAIYIWwAQAAUA1iAAAAAAhghXA6IABgDtIAAAAACGCD8A
+ogAHAPwgAAAAAIYIRAOiAAgAEyEAAAAAhgBxBkcACQAbIQAAAACGAMIFRwAJACMhAAAAAIYYfwQG
+AAkAQyEAAAAAxgBNBqcACQBoIQAAAADGAUYGmAANAHshAAAAAMYBWgaYAA4AfSEAAAAAhhh/BLEA
+DwCMIQAAAACGGH8EsQAQAJshAAAAAIMYfwQGABEAoyEAAAAAkwhrBLcAEQDPIQAAAACTCMAAvAAR
+ANYhAAAAAJMIzADBABEA3iEAAAAAlgjOBccAEgDlIQAAAACGGH8EBgASAO0hAAAAAJEYhQTMABIA
+AAABAHUGAAABAGQEAAACAFsFAAADADgEAAABAMoCAAABAMoCAAABAMoCAAABAMoCAAABAC4AAAAC
+AJAAAAADAGQEAAAEADgEAAABAGQEAAABAHUGAAABAP4FAAABAP4FAAABAMoCCQB/BAEAEQB/BAYA
+GQB/BAoAKQB/BBAAMQB/BBAAOQB/BBAAQQB/BBAASQB/BBAAUQB/BBAAWQB/BBAAYQB/BBAAaQB/
+BAYAmQB/BAYAuQB/BBUAyQB/BAYAiQCzAgYAiQC+AgYA0QD0Ah8AcQB/BCUAcQBkBC8AcQBbBTMA
+eQDqAjcAcQB5AzwAcQCIA0EAcQCAAwEA2QB/BBAAcQBxBkcAcQDCBUcAiQB/BAYA6QCJBUsAiQBv
+BVIAkQB/BAYA+QB+AFgA+QB/BmAAoQB/BGYAwQB/BAYALgALAOcALgATAPAALgAbAA8BLgAjABgB
+LgArAEEBLgAzAEEBLgA7AEEBLgBDABgBLgBLAEcBLgBTAEEBLgBbAF4BQwBjAKgB4QB7AKgB4wBr
+AKgB6QBzAA8BCQFzAA8BGwADAAEABwAHAAgACQAAABYD0AAAAHMD1AAAAF8A0AAAAFsD1AAAAEMA
+1AAAAEgD1AAAAG8E2AAAAOAA3QAAANIF4gACAAYAAwACAAcABQABAAgABwABAAkACQABAAoACwAB
+AAsADQACABUADwACABYAEQABABcAEQACABgAEwAEgAAAAQAAAAAAAAAAAAAAAAABAAAABAAAAAAA
+AAAAAAAAbgA2AAAAAAAQAAAAAAAAAAAAAAB3AAgGAAAAABAAAAAAAAAAAAAAAHcAJQYAAAAABAAA
+AAAAAAAAAAAAbgCRAwAAAAAAAAAAAQAAANAEAAAAAABTQ18zQjM2ODc5RDdDRDc0QjUwODQwQTQz
+MzI3OERFMjQ4NwA8TW9kdWxlPgBJbnB1dElEAG1zY29ybGliAHNldF9Jc1ZhbGlkAGRlZmF1bHRJ
+bnN0YW5jZQBzZXRfRXJyb3JNZXNzYWdlAFJ1bnRpbWVUeXBlSGFuZGxlAEdldFR5cGVGcm9tSGFu
+ZGxlAElucHV0TmFtZQBNaWNyb3NvZnQuU3FsU2VydmVyLkR0cy5QaXBlbGluZQBUeXBlAGdldF9D
+dWx0dXJlAHNldF9DdWx0dXJlAHJlc291cmNlQ3VsdHVyZQBBcHBsaWNhdGlvblNldHRpbmdzQmFz
+ZQBFZGl0b3JCcm93c2FibGVTdGF0ZQBDb21waWxlckdlbmVyYXRlZEF0dHJpYnV0ZQBEZWJ1Z2dl
+ck5vblVzZXJDb2RlQXR0cmlidXRlAERlYnVnZ2FibGVBdHRyaWJ1dGUARWRpdG9yQnJvd3NhYmxl
+QXR0cmlidXRlAEFzc2VtYmx5VGl0bGVBdHRyaWJ1dGUAQXNzZW1ibHlUcmFkZW1hcmtBdHRyaWJ1
+dGUAVGFyZ2V0RnJhbWV3b3JrQXR0cmlidXRlAEFzc2VtYmx5Q29uZmlndXJhdGlvbkF0dHJpYnV0
+ZQBBc3NlbWJseURlc2NyaXB0aW9uQXR0cmlidXRlAENvbXBpbGF0aW9uUmVsYXhhdGlvbnNBdHRy
+aWJ1dGUAQXNzZW1ibHlQcm9kdWN0QXR0cmlidXRlAEFzc2VtYmx5Q29weXJpZ2h0QXR0cmlidXRl
+AFNTSVNTY3JpcHRDb21wb25lbnRFbnRyeVBvaW50QXR0cmlidXRlAEFzc2VtYmx5Q29tcGFueUF0
+dHJpYnV0ZQBSdW50aW1lQ29tcGF0aWJpbGl0eUF0dHJpYnV0ZQBQcmVFeGVjdXRlAFBvc3RFeGVj
+dXRlAHZhbHVlAFN5c3RlbS5SdW50aW1lLlZlcnNpb25pbmcAR2V0U3RyaW5nAElzTWF0Y2gAU3lz
+dGVtLkNvbXBvbmVudE1vZGVsAGdldF9lbWFpbABTQ18zQjM2ODc5RDdDRDc0QjUwODQwQTQzMzI3
+OERFMjQ4Ny5kbGwAc2V0X0lzVmFsaWRfSXNOdWxsAHNldF9FcnJvck1lc3NhZ2VfSXNOdWxsAGdl
+dF9lbWFpbF9Jc051bGwAU2V0TnVsbABzZXRfSXRlbQBTeXN0ZW0AcmVzb3VyY2VNYW4AQm9vbGVh
+bgBTY3JpcHRNYWluAFN5c3RlbS5Db25maWd1cmF0aW9uAFN5c3RlbS5HbG9iYWxpemF0aW9uAFN5
+c3RlbS5SZWZsZWN0aW9uAEludmFsaWRPcGVyYXRpb25FeGNlcHRpb24AU3RyaW5nQ29tcGFyaXNv
+bgBDdWx0dXJlSW5mbwBPdXRwdXROYW1lTWFwAE91dHB1dE1hcABJbnB1dDBCdWZmZXIAUGlwZWxp
+bmVCdWZmZXIAU2NyaXB0QnVmZmVyAGdldF9SZXNvdXJjZU1hbmFnZXIALmN0b3IALmNjdG9yAFN5
+c3RlbS5EaWFnbm9zdGljcwBTeXN0ZW0uUnVudGltZS5Db21waWxlclNlcnZpY2VzAFN5c3RlbS5S
+ZXNvdXJjZXMAU0NfNjY1OTBhYTNmMTI5NDhmMjlhMGRmMzFmMjJmNTliMDAuUHJvcGVydGllcy5S
+ZXNvdXJjZXMucmVzb3VyY2VzAERlYnVnZ2luZ01vZGVzAFNDXzY2NTkwYWEzZjEyOTQ4ZjI5YTBk
+ZjMxZjIyZjU5YjAwLlByb3BlcnRpZXMAVmFyaWFibGVzAEJ1ZmZlckNvbHVtbkluZGV4ZXMAR2V0
+Q29sdW1uSW5kZXhlcwBTZXR0aW5ncwBFcXVhbHMAU3lzdGVtLlRleHQuUmVndWxhckV4cHJlc3Np
+b25zAENvbm5lY3Rpb25zAE9iamVjdABFbmRPZlJvd3NldABnZXRfRGVmYXVsdABVc2VyQ29tcG9u
+ZW50AFBhcmVudENvbXBvbmVudABTY3JpcHRDb21wb25lbnQATWljcm9zb2Z0LlNxbFNlcnZlci5U
+eFNjcmlwdABNaWNyb3NvZnQuU3FsU2VydmVyLlBpcGVsaW5lSG9zdABJbnB1dDBfUHJvY2Vzc0lu
+cHV0AElucHV0MF9Qcm9jZXNzSW5wdXRSb3cATmV4dFJvdwBSZWdleABnZXRfQXNzZW1ibHkAADVe
+AFsAXgBAAFwAcwBdACsAQABbAF4AQABcAHMAXQArAFwALgBbAF4AQABcAHMAXQArACQAACt5AG8A
+dQAgAHcAcgBvAHQAZQAgAHcAcgBvAG4AZwAgAGUAbQBhAGkAbAAAgJtJAHMATgB1AGwAbAAgAHAA
+cgBvAHAAZQByAHQAeQAgAGMAYQBuAG4AbwB0ACAAYgBlACAAcwBlAHQAIAB0AG8AIABGAGEAbABz
+AGUALgAgAEEAcwBzAGkAZwBuACAAYQAgAHYAYQBsAHUAZQAgAHQAbwAgAHQAaABlACAAYwBvAGwA
+dQBtAG4AIABpAG4AcwB0AGUAYQBkAC4AAA9JAG4AcAB1AHQAIAAwAABxUwBDAF8ANgA2ADUAOQAw
+AGEAYQAzAGYAMQAyADkANAA4AGYAMgA5AGEAMABkAGYAMwAxAGYAMgAyAGYANQA5AGIAMAAwAC4A
+UAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAAAAAJKaA9LTkkpIpyHRZmpV
+aJgABCABAQgDIAABBSABARERBCABAQ4FIAEBEVkDBwEOBQACAg4OCSADARI9HQgSQQMGEj0DBh0I
+BCABDggEIAECCAUgAgEIHAMgAAIGIAICDhF5BSABHQgIBwABEn0RgIEFIAASgIUHIAIBDhKAhQi3
+elxWGTTgiQiJhF3NgIDMkQMGEhQDBhIYAwYSRQMGElEDBhJVAwYSIAUgAQESDAMgAA4EIAEBAgkg
+BAEIDhI9EkEFIAEBEkUEAAASUQQAABJVBQABARJVBAAAEiADAAABAygADgMoAAIECAASUQQIABJV
+BAgAEiAIAQAIAAAAAAAeAQABAFQCFldyYXBOb25FeGNlcHRpb25UaHJvd3MBCAEAAgAAAAAAKAEA
+I1NDXzY2NTkwYWEzZjEyOTQ4ZjI5YTBkZjMxZjIyZjU5YjAwAAAFAQAAAAAWAQARQ29weXJpZ2h0
+IEAgIDIwMjUAAEkBABouTkVURnJhbWV3b3JrLFZlcnNpb249djQuNwEAVA4URnJhbWV3b3JrRGlz
+cGxheU5hbWUSLk5FVCBGcmFtZXdvcmsgNC43BAEAAAAAAAC0AAAAzsrvvgEAAACRAAAAbFN5c3Rl
+bS5SZXNvdXJjZXMuUmVzb3VyY2VSZWFkZXIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1
+bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSNTeXN0ZW0uUmVz
+b3VyY2VzLlJ1bnRpbWVSZXNvdXJjZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0AAAA1DIAAAAAAAAA
+AAAA7jIAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAyAAAAAAAAAAAAAAAAX0NvckRsbE1haW4A
+bXNjb3JlZS5kbGwAAAAAAP8lACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAQAQAAAAGAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAA
+SAAAAFhAAADsAwAAAAAAAAAAAADsAzQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYATwAA
+AAAAvQTv/gAAAQAAAAEAAAAAAAAAAQAAAAAAPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQA
+AAABAFYAYQByAEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkAbwBu
+AAAAAAAAALAETAMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAAKAMAAAEAMAAwADAA
+MAAwADQAYgAwAAAAGgABAAEAQwBvAG0AbQBlAG4AdABzAAAAAAAAACIAAQABAEMAbwBtAHAAYQBu
+AHkATgBhAG0AZQAAAAAAAAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAA
+AABTAEMAXwA2ADYANQA5ADAAYQBhADMAZgAxADIAOQA0ADgAZgAyADkAYQAwAGQAZgAzADEAZgAy
+ADIAZgA1ADkAYgAwADAAAAAwAAgAAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4A
+MAAuADAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMAQwBfADMAQgAzADYAOAA3
+ADkARAA3AEMARAA3ADQAQgA1ADAAOAA0ADAAQQA0ADMAMwAyADcAOABEAEUAMgA0ADgANwAuAGQA
+bABsAAAASAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAAQwBvAHAAeQByAGkAZwBo
+AHQAIABAACAAIAAyADAAMgA1AAAAKgABAAEATABlAGcAYQBsAFQAcgBhAGQAZQBtAGEAcgBrAHMA
+AAAAAAAAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBpAGwAZQBuAGEAbQBlAAAAUwBDAF8AMwBC
+ADMANgA4ADcAOQBEADcAQwBEADcANABCADUAMAA4ADQAMABBADQAMwAzADIANwA4AEQARQAyADQA
+OAA3AC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBtAGUAAAAAAFMAQwBfADYANgA1
+ADkAMABhAGEAMwBmADEAMgA5ADQAOABmADIAOQBhADAAZABmADMAMQBmADIAMgBmADUAOQBiADAA
+MAAAADQACAABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4AMAAuADAAAAA4
+AAgAAQBBAHMAcwBlAG0AYgBsAHkAIABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgAwAC4AMAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAMAAAAADMAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the Microsoft Visual Studio Tools for Applications project. Project names must be unique within a package."
+                  name="VSTAProjectName"
+                  typeConverter="NOTBROWSABLE">SC_3b36879d7cd74b50840a433278de2487</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the programming language used by the script."
+                  name="ScriptLanguage"
+                  typeConverter="Microsoft.SqlServer.VSTAHosting.ScriptingLanguages">CSharp</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read-only variables."
+                  name="ReadOnlyVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read/write variables."
+                  name="ReadWriteVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIWriteableVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="List of breakpoints present on the script."
+                  isArray="true"
+                  name="BreakpointCollection"
+                  typeConverter="NOTBROWSABLE">
+                  <arrayElements
+                    arrayElementCount="0" />
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataChecksum140"
+                  typeConverter="NOTBROWSABLE">F5</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Transform\Проверка валидности почты.Inputs[Input 0]"
+                  hasSideEffects="true"
+                  name="Input 0">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Transform\Проверка валидности почты.Inputs[Input 0].Columns[&quot;email&quot;]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="&quot;email&quot;"
+                      lineageId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[&quot;email&quot;]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transform\Проверка валидности почты.Outputs[Output 0]"
+                  name="Output 0"
+                  synchronousInputId="Package\Transform\Проверка валидности почты.Inputs[Input 0]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\Проверка валидности почты.Outputs[Output 0].Columns[ErrorMessage]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Transform\Проверка валидности почты.Outputs[Output 0].Columns[ErrorMessage]"
+                      name="ErrorMessage" />
+                    <outputColumn
+                      refId="Package\Transform\Проверка валидности почты.Outputs[Output 0].Columns[IsValid]"
+                      dataType="bool"
+                      lineageId="Package\Transform\Проверка валидности почты.Outputs[Output 0].Columns[IsValid]"
+                      name="IsValid" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transform\Производный столбец"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Производный столбец;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;0"
+              description="Создает новые значения столбцов путем применения выражений к входным столбцам преобразования. Создает новые столбцы или перезаписывает существующие. Пример: объединение значений столбцов &quot;first name&quot; и &quot;last name&quot; и создание столбца &quot;full name&quot;."
+              name="Производный столбец"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Transform\Производный столбец.Inputs[Вход производного столбца]"
+                  description="Ввод преобразования &quot;Производный столбец&quot;"
+                  name="Вход производного столбца">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Transform\Производный столбец.Inputs[Вход производного столбца].Columns[phone]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="&quot;phone&quot;"
+                      errorOrTruncationOperation="Вычисление"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[&quot;phone&quot;]"
+                      name="phone"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Выражение производного столбца"
+                          name="Expression">[REPLACE](#{Package\Transform\ClientSource.Outputs[Выход источника "OLE DB"].Columns["phone"]}," ","")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Понятное выражение производного столбца"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACE(phone," ","")</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Transform\Производный столбец.Inputs[Вход производного столбца].Columns[registration_date]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="&quot;registration_date&quot;"
+                      errorOrTruncationOperation="Вычисление"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[&quot;registration_date&quot;]"
+                      name="registration_date"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Выражение производного столбца"
+                          name="Expression">[ISNULL](#{Package\Transform\ClientSource.Outputs[Выход источника "OLE DB"].Columns["registration_date"]}) || #{Package\Transform\ClientSource.Outputs[Выход источника "OLE DB"].Columns["registration_date"]} == "" || [LEN]([TRIM](#{Package\Transform\ClientSource.Outputs[Выход источника "OLE DB"].Columns["registration_date"]})) != 10 ? NULL(DT_DATE) : (DT_DATE)([SUBSTRING](#{Package\Transform\ClientSource.Outputs[Выход источника "OLE DB"].Columns["registration_date"]},7,4) + "-" + [SUBSTRING](#{Package\Transform\ClientSource.Outputs[Выход источника "OLE DB"].Columns["registration_date"]},4,2) + "-" + [SUBSTRING](#{Package\Transform\ClientSource.Outputs[Выход источника "OLE DB"].Columns["registration_date"]},1,2))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Понятное выражение производного столбца"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL(registration_date) || registration_date == "" || LEN(TRIM(registration_date)) != 10 ? NULL(DT_DATE) : (DT_DATE)(SUBSTRING(registration_date,7,4) + "-" + SUBSTRING(registration_date,4,2) + "-" + SUBSTRING(registration_date,1,2))</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transform\Производный столбец.Outputs[Выход производного столбца]"
+                  description="Выход по умолчанию преобразования &quot;Производный столбец&quot;"
+                  exclusionGroup="1"
+                  name="Выход производного столбца"
+                  synchronousInputId="Package\Transform\Производный столбец.Inputs[Вход производного столбца]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Transform\Производный столбец.Outputs[Вывод ошибок производного столбца]"
+                  description="Вывод ошибок преобразования &quot;Производный столбец&quot;"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Вывод ошибок производного столбца"
+                  synchronousInputId="Package\Transform\Производный столбец.Inputs[Вход производного столбца]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\Производный столбец.Outputs[Вывод ошибок производного столбца].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transform\Производный столбец.Outputs[Вывод ошибок производного столбца].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transform\Производный столбец.Outputs[Вывод ошибок производного столбца].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transform\Производный столбец.Outputs[Вывод ошибок производного столбца].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transform\Сортировка"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Сортировка;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;1"
+              description="Сортирует входные данные по возрастанию или убыванию, если выполнить сортировку в источнике нельзя. Пример: сортировка данных продаж по полю &quot;customer id&quot; перед записью в неструктурированный файл и передачей в другой отдел. Примечание. Это преобразование не рекомендуется применять к большим потокам данных."
+              name="Сортировка"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Указывает, удаляет ли преобразование &quot;Сортировка&quot; строки с повторяющимися значениями сортировки."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает максимальное число потоков, используемых для сортировки."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Transform\Сортировка.Inputs[Вход сортировки]"
+                  name="Вход сортировки">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Transform\Сортировка.Inputs[Вход сортировки].Columns[supplier_name]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="supplier_name"
+                      lineageId="Package\Transform\SupplierSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[supplier_name]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transform\Сортировка.Outputs[Выход сортировки]"
+                  isSorted="true"
+                  name="Выход сортировки">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\Сортировка.Outputs[Выход сортировки].Columns[supplier_name]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Transform\Сортировка.Outputs[Выход сортировки].Columns[supplier_name]"
+                      name="supplier_name"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\Transform\SupplierSource.Outputs[Выход источника "OLE DB"].Columns[supplier_name]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transform\Сортировка 1"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Сортировка;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;1"
+              description="Сортирует входные данные по возрастанию или убыванию, если выполнить сортировку в источнике нельзя. Пример: сортировка данных продаж по полю &quot;customer id&quot; перед записью в неструктурированный файл и передачей в другой отдел. Примечание. Это преобразование не рекомендуется применять к большим потокам данных."
+              name="Сортировка 1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Указывает, удаляет ли преобразование &quot;Сортировка&quot; строки с повторяющимися значениями сортировки."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает максимальное число потоков, используемых для сортировки."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Transform\Сортировка 1.Inputs[Вход сортировки]"
+                  name="Вход сортировки">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Transform\Сортировка 1.Inputs[Вход сортировки].Columns[&quot;client_id&quot;]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="&quot;client_id&quot;"
+                      lineageId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[&quot;client_id&quot;]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Transform\Сортировка 1.Inputs[Вход сортировки].Columns[&quot;name&quot;]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="&quot;name&quot;"
+                      lineageId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[&quot;name&quot;]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Transform\Сортировка 1.Inputs[Вход сортировки].Columns[&quot;email&quot;]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="&quot;email&quot;"
+                      lineageId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[&quot;email&quot;]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Transform\Сортировка 1.Inputs[Вход сортировки].Columns[&quot;phone&quot;]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="&quot;phone&quot;"
+                      lineageId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[&quot;phone&quot;]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Transform\Сортировка 1.Inputs[Вход сортировки].Columns[&quot;registration_date&quot;]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="&quot;registration_date&quot;"
+                      lineageId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[&quot;registration_date&quot;]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Transform\Сортировка 1.Inputs[Вход сортировки].Columns[&quot;country&quot;]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="&quot;country&quot;"
+                      lineageId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[&quot;country&quot;]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Transform\Сортировка 1.Inputs[Вход сортировки].Columns[Copy of registration_date]"
+                      cachedDataType="dbDate"
+                      cachedName="Copy of registration_date"
+                      lineageId="Package\Transform\Преобразование данных.Outputs[Выходные данные преобразования данных].Columns[Copy of registration_date]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Transform\Сортировка 1.Inputs[Вход сортировки].Columns[ErrorMessage]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ErrorMessage"
+                      lineageId="Package\Transform\Проверка валидности почты.Outputs[Output 0].Columns[ErrorMessage]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Transform\Сортировка 1.Inputs[Вход сортировки].Columns[IsValid]"
+                      cachedDataType="bool"
+                      cachedName="IsValid"
+                      lineageId="Package\Transform\Проверка валидности почты.Outputs[Output 0].Columns[IsValid]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает параметры сравнения символьных данных."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает порядок сортировки столбца."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transform\Сортировка 1.Outputs[Выход сортировки]"
+                  isSorted="true"
+                  name="Выход сортировки">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[&quot;client_id&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[&quot;client_id&quot;]"
+                      name="&quot;client_id&quot;"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\Transform\ClientSource.Outputs[Выход источника "OLE DB"].Columns["client_id"]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[&quot;name&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[&quot;name&quot;]"
+                      name="&quot;name&quot;">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\Transform\ClientSource.Outputs[Выход источника "OLE DB"].Columns["name"]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[&quot;email&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[&quot;email&quot;]"
+                      name="&quot;email&quot;">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\Transform\ClientSource.Outputs[Выход источника "OLE DB"].Columns["email"]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[phone]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[phone]"
+                      name="phone">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\Transform\ClientSource.Outputs[Выход источника "OLE DB"].Columns["phone"]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[registration_date]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[registration_date]"
+                      name="registration_date">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\Transform\ClientSource.Outputs[Выход источника "OLE DB"].Columns["registration_date"]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[&quot;country&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[&quot;country&quot;]"
+                      name="&quot;country&quot;">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\Transform\ClientSource.Outputs[Выход источника "OLE DB"].Columns["country"]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[Copy of registration_date]"
+                      dataType="dbDate"
+                      lineageId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[Copy of registration_date]"
+                      name="Copy of registration_date">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\Transform\Преобразование данных.Outputs[Выходные данные преобразования данных].Columns[Copy of registration_date]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[ErrorMessage]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[ErrorMessage]"
+                      name="ErrorMessage">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\Transform\Проверка валидности почты.Outputs[Output 0].Columns[ErrorMessage]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[IsValid]"
+                      dataType="bool"
+                      lineageId="Package\Transform\Сортировка 1.Outputs[Выход сортировки].Columns[IsValid]"
+                      name="IsValid">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает идентификатор журнала обращений и преобразований входного столбца, связанного с этим выходным столбцом."
+                          name="SortColumnId">#{Package\Transform\Проверка валидности почты.Outputs[Output 0].Columns[IsValid]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Transform.Paths[Data Conversion Output]"
+              endId="Package\Transform\TempSupplier.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Transform\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Transform.Paths[Output 0]"
+              endId="Package\Transform\Сортировка 1.Inputs[Вход сортировки]"
+              name="Output 0"
+              startId="Package\Transform\Проверка валидности почты.Outputs[Output 0]" />
+            <path
+              refId="Package\Transform.Paths[Выход источника &quot;OLE DB&quot;]"
+              endId="Package\Transform\Сортировка.Inputs[Вход сортировки]"
+              name="Выход источника &quot;OLE DB&quot;"
+              startId="Package\Transform\SupplierSource.Outputs[Выход источника &quot;OLE DB&quot;]" />
+            <path
+              refId="Package\Transform.Paths[Выход источника &quot;OLE DB&quot;1]"
+              endId="Package\Transform\Производный столбец.Inputs[Вход производного столбца]"
+              name="Выход источника &quot;OLE DB&quot;"
+              startId="Package\Transform\ClientSource.Outputs[Выход источника &quot;OLE DB&quot;]" />
+            <path
+              refId="Package\Transform.Paths[Выход производного столбца]"
+              endId="Package\Transform\Преобразование данных.Inputs[Входные данные преобразования данных]"
+              name="Выход производного столбца"
+              startId="Package\Transform\Производный столбец.Outputs[Выход производного столбца]" />
+            <path
+              refId="Package\Transform.Paths[Выход сортировки]"
+              endId="Package\Transform\Data Conversion.Inputs[Data Conversion Input]"
+              name="Выход сортировки"
+              startId="Package\Transform\Сортировка.Outputs[Выход сортировки]" />
+            <path
+              refId="Package\Transform.Paths[Выход сортировки1]"
+              endId="Package\Transform\Преобразование данных 1.Inputs[Входные данные преобразования данных]"
+              name="Выход сортировки"
+              startId="Package\Transform\Сортировка 1.Outputs[Выход сортировки]" />
+            <path
+              refId="Package\Transform.Paths[Выходные данные преобразования данных]"
+              endId="Package\Transform\TempClient.Inputs[OLE DB Destination Input]"
+              name="Выходные данные преобразования данных"
+              startId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные преобразования данных]" />
+            <path
+              refId="Package\Transform.Paths[Выходные данные преобразования данных1]"
+              endId="Package\Transform\Проверка валидности почты.Inputs[Input 0]"
+              name="Выходные данные преобразования данных"
+              startId="Package\Transform\Преобразование данных.Outputs[Выходные данные преобразования данных]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{88E338F8-5384-4961-9671-2C53DF2AA02C}"
+      DTS:From="Package\Extract data from source"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\TaskCreateTempTables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{AECF0513-DB76-4A01-AB72-026BF341CBA2}"
+      DTS:From="Package\TaskCreateTempTables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Transform" />
+  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -2914,11 +5452,63 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="194.4,41.6"
           Id="Package\Extract data from source"
           TopLeft="98.3571430548113,83.49999993163" />
+        <NodeLayout
+          Size="188,41.6"
+          Id="Package\TaskCreateTempTables"
+          TopLeft="343.571429302802,84.1176469850912" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="292.757143054811,104.608823458361">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="50.8142862479908,0"
+              Start="0,0"
+              End="43.3142862479908,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="43.3142862479908,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="126.4,41.6"
+          Id="Package\Transform"
+          TopLeft="585.714286961118,80.2941175766779" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="531.571429302802,103.005882280885">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="54.1428576583157,0"
+              Start="0,0"
+              End="46.6428576583157,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="46.6428576583157,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -2948,8 +5538,8 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
           Id="Package\Extract data from source\Server"
           TopLeft="122.999998167157,141.999997884035" />
         <NodeLayout
-          Size="184,41.6"
-          Id="Package\Extract data from source\Назначение &quot;OLE DB&quot;"
+          Size="114.4,41.6"
+          Id="Package\Extract data from source\Product"
           TopLeft="498.99999256432,297.599995708466" />
         <NodeLayout
           Size="118.4,41.6"
@@ -3119,7 +5709,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Extract data from source\Назначение &quot;OLE DB&quot;">
+    design-time-name="Package\Extract data from source\Product">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -3172,6 +5762,338 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Extract data from source\ProductItemdDb">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Transform">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="143.2,41.6"
+          Id="Package\Transform\TempSupplier"
+          TopLeft="731.857137265355,60" />
+        <NodeLayout
+          Size="155.2,41.6"
+          Id="Package\Transform\Data Conversion"
+          TopLeft="465.435713249096,62.4411776850851" />
+        <NodeLayout
+          Size="148.8,41.6"
+          Id="Package\Transform\SupplierSource"
+          TopLeft="65.2499999217689,65.9607822866176" />
+        <NodeLayout
+          Size="136,41.6"
+          Id="Package\Transform\Сортировка"
+          TopLeft="285.499996639788,60.460782368574" />
+        <NodeLayout
+          Size="187.2,41.6"
+          Id="Package\Transform\Производный столбец"
+          TopLeft="253.02777490144,163.449670998349" />
+        <NodeLayout
+          Size="131.2,41.6"
+          Id="Package\Transform\TempClient"
+          TopLeft="810.842974199421,233.724512395096" />
+        <NodeLayout
+          Size="136.8,41.6"
+          Id="Package\Transform\ClientSource"
+          TopLeft="60,162.505228038226" />
+        <NodeLayout
+          Size="218.4,41.6"
+          Id="Package\Transform\Проверка валидности почты"
+          TopLeft="854.694432602574,155.560782465432" />
+        <NodeLayout
+          Size="136,41.6"
+          Id="Package\Transform\Сортировка 1"
+          TopLeft="263.583330299706,230.227447959874" />
+        <NodeLayout
+          Size="208.8,41.6"
+          Id="Package\Transform\Преобразование данных 1"
+          TopLeft="471.205549463878,230.894114676211" />
+        <NodeLayout
+          Size="199.2,41.6"
+          Id="Package\Transform\Преобразование данных"
+          TopLeft="615.805547273407,162.671893232161" />
+        <EdgeLayout
+          Id="Package\Transform.Paths[Data Conversion Output]"
+          TopLeft="620.635713249096,82.0205888425425">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="111.22142401626,0"
+              Start="0,0"
+              End="103.72142401626,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="103.72142401626,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="30.92514560188,5,41.8711328125,9.6025390625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Transform.Paths[Выход источника &quot;OLE DB&quot;]"
+          TopLeft="214.049999921769,84.0107823275958">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="71.4499967180192,0"
+              Start="0,0"
+              End="63.9499967180192,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="63.9499967180192,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="7.11719236942624,5,49.7156119791667,9.568359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Transform.Paths[Выход сортировки]"
+          TopLeft="421.499996639788,82.2509800268296">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="43.9357166093076,0"
+              Start="0,0"
+              End="36.4357166093076,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="36.4357166093076,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-2.7177081015962,5,41.8711328125,9.6025390625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Transform.Paths[Выход источника &quot;OLE DB&quot;1]"
+          TopLeft="196.8,183.777449518288">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="56.22777490144,0"
+              Start="0,0"
+              End="48.72777490144,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="48.72777490144,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-3.22391853886332,5,55.1756119791667,9.568359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Transform.Paths[Output 0]"
+          TopLeft="963.894432602574,197.160782465432">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-632.311102302868,33.0666654944424"
+              Start="0,0"
+              End="-632.311102302868,25.5666654944424">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.5333327472212" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.5333327472212"
+                    Point2="0,16.5333327472212"
+                    Point3="-4,16.5333327472212" />
+                  <mssgle:LineSegment
+                    End="-628.311102302868,16.5333327472212" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-628.311102302868,16.5333327472212"
+                    Point2="-632.311102302868,16.5333327472212"
+                    Point3="-632.311102302868,20.5333327472212" />
+                  <mssgle:LineSegment
+                    End="-632.311102302868,25.5666654944424" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-343.743357141017,21.5333327472212,55.1756119791667,9.568359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Transform.Paths[Выход сортировки1]"
+          TopLeft="399.583330299706,251.360781318042">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="71.6222191641718,0"
+              Start="0,0"
+              End="64.1222191641718,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="64.1222191641718,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="4.47330359250256,5,55.1756119791667,9.568359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Transform.Paths[Выходные данные преобразования данных]"
+          TopLeft="680.005549463878,253.109313535654">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="130.837424735544,0"
+              Start="0,0"
+              End="123.337424735544,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="123.337424735544,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="36.4227227844387,5,50.4919791666667,9.568359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Transform.Paths[Выход производного столбца]"
+          TopLeft="440.22777490144,183.860782115255">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="175.577772371967,0"
+              Start="0,0"
+              End="168.077772371967,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="168.077772371967,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="56.4510801964003,5,55.1756119791667,9.568359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Transform.Paths[Выходные данные преобразования данных1]"
+          TopLeft="815.005547273407,179.916337848796">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="39.6888853291669,0"
+              Start="0,0"
+              End="32.1888853291669,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="32.1888853291669,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-11.4933633249999,5,55.1756119791667,9.568359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Transform\TempSupplier">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Transform\SupplierSource">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Transform\TempClient">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Transform\ClientSource">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
