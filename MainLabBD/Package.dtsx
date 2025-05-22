@@ -11,8 +11,8 @@
   DTS:LocaleID="1049"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="70"
-  DTS:VersionGUID="{F43EB597-902B-4D90-B1B2-3A2A687714E9}">
+  DTS:VersionBuild="81"
+  DTS:VersionGUID="{76D82209-13D8-45FF-9485-93C869C40C0B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -204,6 +204,24 @@
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{A78F0D9A-298B-4792-B129-681061F0C0DF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BAADD3EA-268E-462D-AD4C-538815659EF6}"
+          SQLTask:SqlStatementSource="-- Скрипт создания таблиц с проверкой существования&#xA;-- Создан: 2025-05-22 16:42:39&#xA;-- Пользователь: Kwameldx666&#xA;&#xA;-- Проверка и создание таблицы ClentDB&#xA;IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'ClentDB')&#xA;BEGIN&#xA;    CREATE TABLE [ClentDB] (&#xA;        [client_id] varchar(50),&#xA;        [name] varchar(50),&#xA;        [email] varchar(50),&#xA;        [phone] varchar(50),&#xA;        [registration_date] varchar(50),&#xA;        [country] varchar(50)&#xA;    );&#xA;    PRINT 'Таблица ClentDB успешно создана.';&#xA;END&#xA;ELSE&#xA;BEGIN&#xA;    PRINT 'Таблица ClentDB уже существует.';&#xA;END&#xA;&#xA;-- Проверка и создание таблицы ServerDb&#xA;IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'ServerDb')&#xA;BEGIN&#xA;    CREATE TABLE [ServerDb] (&#xA;        [server_id] int,&#xA;        [user_id] int,&#xA;        [last_join_time] nvarchar(255)&#xA;    );&#xA;    PRINT 'Таблица ServerDb успешно создана.';&#xA;END&#xA;ELSE&#xA;BEGIN&#xA;    PRINT 'Таблица ServerDb уже существует.';&#xA;END&#xA;&#xA;-- Проверка и создание таблицы OrderDb&#xA;IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'OrderDb')&#xA;BEGIN&#xA;    CREATE TABLE [OrderDb] (&#xA;        [Order_id] float,&#xA;        [Client_id] float,&#xA;        [Order_date] nvarchar(255),&#xA;        [Total_amount] float,&#xA;        [Status] bit&#xA;    );&#xA;    PRINT 'Таблица OrderDb успешно создана.';&#xA;END&#xA;ELSE&#xA;BEGIN&#xA;    PRINT 'Таблица OrderDb уже существует.';&#xA;END&#xA;&#xA;-- Проверка и создание таблицы Product&#xA;IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Product')&#xA;BEGIN&#xA;    CREATE TABLE [Product] (&#xA;        [product_id] int,&#xA;        [name] varchar(50),&#xA;        [price] numeric(18,0),&#xA;        [stock_quantity] int,&#xA;        [supplier_name] varchar(50)&#xA;    );&#xA;    PRINT 'Таблица Product успешно создана.';&#xA;END&#xA;ELSE&#xA;BEGIN&#xA;    PRINT 'Таблица Product уже существует.';&#xA;END&#xA;&#xA;-- Проверка и создание таблицы ProductItemdDb&#xA;IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'ProductItemdDb')&#xA;BEGIN&#xA;    CREATE TABLE [ProductItemdDb] (&#xA;        [order_item_id] int,&#xA;        [order_id] int,&#xA;        [product_id] int,&#xA;        [quantity] int,&#xA;        [unit_price] varchar(255),&#xA;        [discount] int&#xA;    );&#xA;    PRINT 'Таблица ProductItemdDb успешно создана.';&#xA;END&#xA;ELSE&#xA;BEGIN&#xA;    PRINT 'Таблица ProductItemdDb уже существует.';&#xA;END&#xA;&#xA;PRINT 'Выполнение скрипта завершено.';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\Extract data from source"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Задача потока данных"
@@ -216,193 +234,6 @@
         <pipeline
           version="1">
           <components>
-            <component
-              refId="Package\Extract data from source\ClentDB"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="Назначение &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;4"
-              description="Назначение &quot;OLE DB&quot;"
-              name="ClentDB"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Указывает имя объекта базы данных, используемого для открытия набора строк."
-                  name="OpenRowset">[ClentDB]</property>
-                <property
-                  dataType="System.String"
-                  description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="Команда SQL для выполнения."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
-                  name="DefaultCodePage">1251</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Указывает используемый режим доступа к базе данных."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Указывает, должны ли значения в столбцах идентификаторов копироваться в назначение. Если свойство имеет значение false, значения в столбцах идентификаторов будут созданы автоматически в месте назначения. Применяется только в том случае, если включена быстрая загрузка."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Указывает, будут ли в назначение вставляться значения NULL для столбцов, содержащих их. Значение false показывает, что если столбец имеет значение NULL, то в назначение будет вставлено его значение по умолчанию. Применяется только в случае, если включена быстрая загрузка."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Задает параметры быстрой загрузки. Применяется только в том случае, если включена быстрая загрузка."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Задает, когда выдаются сообщения о фиксации транзакции в ходе вставки данных. Значение 0 задает, что по окончании вставки данных будет выдано одно сообщение о фиксации транзакции. Применяется только в том случае, если включена быстрая загрузка."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Extract data from source\ClentDB.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[LocalHost.tempdb]"
-                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.tempdb]"
-                  description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Extract data from source\ClentDB.Inputs[Вход назначения &quot;OLE DB&quot;]"
-                  errorOrTruncationOperation="Вставить"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="Вход назначения &quot;OLE DB&quot;">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Extract data from source\ClentDB.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[&quot;client_id&quot;]"
-                      cachedCodepage="1251"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="&quot;client_id&quot;"
-                      externalMetadataColumnId="Package\Extract data from source\ClentDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;client_id&quot;]"
-                      lineageId="Package\Extract data from source\Client(SCV).Outputs[Выход источника &quot;Неструктурированный файл&quot;].Columns[&quot;client_id&quot;]" />
-                    <inputColumn
-                      refId="Package\Extract data from source\ClentDB.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[&quot;name&quot;]"
-                      cachedCodepage="1251"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="&quot;name&quot;"
-                      externalMetadataColumnId="Package\Extract data from source\ClentDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;name&quot;]"
-                      lineageId="Package\Extract data from source\Client(SCV).Outputs[Выход источника &quot;Неструктурированный файл&quot;].Columns[&quot;name&quot;]" />
-                    <inputColumn
-                      refId="Package\Extract data from source\ClentDB.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[&quot;email&quot;]"
-                      cachedCodepage="1251"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="&quot;email&quot;"
-                      externalMetadataColumnId="Package\Extract data from source\ClentDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;email&quot;]"
-                      lineageId="Package\Extract data from source\Client(SCV).Outputs[Выход источника &quot;Неструктурированный файл&quot;].Columns[&quot;email&quot;]" />
-                    <inputColumn
-                      refId="Package\Extract data from source\ClentDB.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[&quot;phone&quot;]"
-                      cachedCodepage="1251"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="&quot;phone&quot;"
-                      externalMetadataColumnId="Package\Extract data from source\ClentDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;phone&quot;]"
-                      lineageId="Package\Extract data from source\Client(SCV).Outputs[Выход источника &quot;Неструктурированный файл&quot;].Columns[&quot;phone&quot;]" />
-                    <inputColumn
-                      refId="Package\Extract data from source\ClentDB.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[&quot;registration_date&quot;]"
-                      cachedCodepage="1251"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="&quot;registration_date&quot;"
-                      externalMetadataColumnId="Package\Extract data from source\ClentDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;registration_date&quot;]"
-                      lineageId="Package\Extract data from source\Client(SCV).Outputs[Выход источника &quot;Неструктурированный файл&quot;].Columns[&quot;registration_date&quot;]" />
-                    <inputColumn
-                      refId="Package\Extract data from source\ClentDB.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[&quot;country&quot;]"
-                      cachedCodepage="1251"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="&quot;country&quot;"
-                      externalMetadataColumnId="Package\Extract data from source\ClentDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;country&quot;]"
-                      lineageId="Package\Extract data from source\Client(SCV).Outputs[Выход источника &quot;Неструктурированный файл&quot;].Columns[&quot;country&quot;]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Extract data from source\ClentDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;client_id&quot;]"
-                      codePage="1251"
-                      dataType="str"
-                      length="50"
-                      name="&quot;client_id&quot;" />
-                    <externalMetadataColumn
-                      refId="Package\Extract data from source\ClentDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;name&quot;]"
-                      codePage="1251"
-                      dataType="str"
-                      length="50"
-                      name="&quot;name&quot;" />
-                    <externalMetadataColumn
-                      refId="Package\Extract data from source\ClentDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;email&quot;]"
-                      codePage="1251"
-                      dataType="str"
-                      length="50"
-                      name="&quot;email&quot;" />
-                    <externalMetadataColumn
-                      refId="Package\Extract data from source\ClentDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;phone&quot;]"
-                      codePage="1251"
-                      dataType="str"
-                      length="50"
-                      name="&quot;phone&quot;" />
-                    <externalMetadataColumn
-                      refId="Package\Extract data from source\ClentDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;registration_date&quot;]"
-                      codePage="1251"
-                      dataType="str"
-                      length="50"
-                      name="&quot;registration_date&quot;" />
-                    <externalMetadataColumn
-                      refId="Package\Extract data from source\ClentDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;country&quot;]"
-                      codePage="1251"
-                      dataType="str"
-                      length="50"
-                      name="&quot;country&quot;" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Extract data from source\ClentDB.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Вывод ошибок назначения &quot;OLE DB&quot;"
-                  synchronousInputId="Package\Extract data from source\ClentDB.Inputs[Вход назначения &quot;OLE DB&quot;]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Extract data from source\ClentDB.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Extract data from source\ClentDB.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Extract data from source\ClentDB.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Extract data from source\ClentDB.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
             <component
               refId="Package\Extract data from source\Client(SCV)"
               componentClassID="Microsoft.FlatFileSource"
@@ -629,6 +460,193 @@
                       refId="Package\Extract data from source\Client(SCV).Outputs[Вывод ошибок источника &quot;Неструктурированный файл&quot;].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Extract data from source\Client(SCV).Outputs[Вывод ошибок источника &quot;Неструктурированный файл&quot;].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract data from source\ClientDB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Назначение &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;4"
+              description="Назначение &quot;OLE DB&quot;"
+              name="ClientDB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowset">[ClientDB]</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Команда SQL для выполнения."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает используемый режим доступа к базе данных."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Указывает, должны ли значения в столбцах идентификаторов копироваться в назначение. Если свойство имеет значение false, значения в столбцах идентификаторов будут созданы автоматически в месте назначения. Применяется только в том случае, если включена быстрая загрузка."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Указывает, будут ли в назначение вставляться значения NULL для столбцов, содержащих их. Значение false показывает, что если столбец имеет значение NULL, то в назначение будет вставлено его значение по умолчанию. Применяется только в случае, если включена быстрая загрузка."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Задает параметры быстрой загрузки. Применяется только в том случае, если включена быстрая загрузка."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Задает, когда выдаются сообщения о фиксации транзакции в ходе вставки данных. Значение 0 задает, что по окончании вставки данных будет выдано одно сообщение о фиксации транзакции. Применяется только в том случае, если включена быстрая загрузка."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract data from source\ClientDB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.tempdb]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.tempdb]"
+                  description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract data from source\ClientDB.Inputs[Вход назначения &quot;OLE DB&quot;]"
+                  errorOrTruncationOperation="Вставить"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Вход назначения &quot;OLE DB&quot;">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract data from source\ClientDB.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[&quot;client_id&quot;]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="&quot;client_id&quot;"
+                      externalMetadataColumnId="Package\Extract data from source\ClientDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;client_id&quot;]"
+                      lineageId="Package\Extract data from source\Client(SCV).Outputs[Выход источника &quot;Неструктурированный файл&quot;].Columns[&quot;client_id&quot;]" />
+                    <inputColumn
+                      refId="Package\Extract data from source\ClientDB.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[&quot;name&quot;]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="&quot;name&quot;"
+                      externalMetadataColumnId="Package\Extract data from source\ClientDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;name&quot;]"
+                      lineageId="Package\Extract data from source\Client(SCV).Outputs[Выход источника &quot;Неструктурированный файл&quot;].Columns[&quot;name&quot;]" />
+                    <inputColumn
+                      refId="Package\Extract data from source\ClientDB.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[&quot;email&quot;]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="&quot;email&quot;"
+                      externalMetadataColumnId="Package\Extract data from source\ClientDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;email&quot;]"
+                      lineageId="Package\Extract data from source\Client(SCV).Outputs[Выход источника &quot;Неструктурированный файл&quot;].Columns[&quot;email&quot;]" />
+                    <inputColumn
+                      refId="Package\Extract data from source\ClientDB.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[&quot;phone&quot;]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="&quot;phone&quot;"
+                      externalMetadataColumnId="Package\Extract data from source\ClientDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;phone&quot;]"
+                      lineageId="Package\Extract data from source\Client(SCV).Outputs[Выход источника &quot;Неструктурированный файл&quot;].Columns[&quot;phone&quot;]" />
+                    <inputColumn
+                      refId="Package\Extract data from source\ClientDB.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[&quot;registration_date&quot;]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="&quot;registration_date&quot;"
+                      externalMetadataColumnId="Package\Extract data from source\ClientDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;registration_date&quot;]"
+                      lineageId="Package\Extract data from source\Client(SCV).Outputs[Выход источника &quot;Неструктурированный файл&quot;].Columns[&quot;registration_date&quot;]" />
+                    <inputColumn
+                      refId="Package\Extract data from source\ClientDB.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[&quot;country&quot;]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="&quot;country&quot;"
+                      externalMetadataColumnId="Package\Extract data from source\ClientDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;country&quot;]"
+                      lineageId="Package\Extract data from source\Client(SCV).Outputs[Выход источника &quot;Неструктурированный файл&quot;].Columns[&quot;country&quot;]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract data from source\ClientDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;client_id&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      name="&quot;client_id&quot;" />
+                    <externalMetadataColumn
+                      refId="Package\Extract data from source\ClientDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;name&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      name="&quot;name&quot;" />
+                    <externalMetadataColumn
+                      refId="Package\Extract data from source\ClientDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;email&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      name="&quot;email&quot;" />
+                    <externalMetadataColumn
+                      refId="Package\Extract data from source\ClientDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;phone&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      name="&quot;phone&quot;" />
+                    <externalMetadataColumn
+                      refId="Package\Extract data from source\ClientDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;registration_date&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      name="&quot;registration_date&quot;" />
+                    <externalMetadataColumn
+                      refId="Package\Extract data from source\ClientDB.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[&quot;country&quot;]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      name="&quot;country&quot;" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract data from source\ClientDB.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Вывод ошибок назначения &quot;OLE DB&quot;"
+                  synchronousInputId="Package\Extract data from source\ClientDB.Inputs[Вход назначения &quot;OLE DB&quot;]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract data from source\ClientDB.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract data from source\ClientDB.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract data from source\ClientDB.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract data from source\ClientDB.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -2895,7 +2913,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
               startId="Package\Extract data from source\ProductItems.Outputs[Выход источника &quot;OLE DB&quot;]" />
             <path
               refId="Package\Extract data from source.Paths[Выход источника &quot;Неструктурированный файл&quot;]"
-              endId="Package\Extract data from source\ClentDB.Inputs[Вход назначения &quot;OLE DB&quot;]"
+              endId="Package\Extract data from source\ClientDB.Inputs[Вход назначения &quot;OLE DB&quot;]"
               name="Выход источника &quot;Неструктурированный файл&quot;"
               startId="Package\Extract data from source\Client(SCV).Outputs[Выход источника &quot;Неструктурированный файл&quot;]" />
           </paths>
@@ -2949,7 +2967,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                 <property
                   dataType="System.String"
                   description="Указывает имя объекта базы данных, используемого для открытия набора строк."
-                  name="OpenRowset">[dbo].[ClentDB]</property>
+                  name="OpenRowset">[dbo].[ClientDB]</property>
                 <property
                   dataType="System.String"
                   description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
@@ -3506,7 +3524,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                 <input
                   refId="Package\Transform\TempClient.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
+                  errorRowDisposition="IgnoreFailure"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
@@ -4904,7 +4922,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                           dataType="System.String"
                           description="Понятное выражение производного столбца"
                           expressionType="Notify"
-                          name="FriendlyExpression">REPLACE(phone," ","")</property>
+                          name="FriendlyExpression">REPLACE([Производный столбец].phone," ","")</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
@@ -4930,7 +4948,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                           dataType="System.String"
                           description="Понятное выражение производного столбца"
                           expressionType="Notify"
-                          name="FriendlyExpression">ISNULL(registration_date) || registration_date == "" || LEN(TRIM(registration_date)) != 10 ? NULL(DT_DATE) : (DT_DATE)(SUBSTRING(registration_date,7,4) + "-" + SUBSTRING(registration_date,4,2) + "-" + SUBSTRING(registration_date,1,2))</property>
+                          name="FriendlyExpression">ISNULL([Производный столбец].registration_date) || [Производный столбец].registration_date == "" || LEN(TRIM([Производный столбец].registration_date)) != 10 ? NULL(DT_DATE) : (DT_DATE)(SUBSTRING([Производный столбец].registration_date,7,4) + "-" + SUBSTRING([Производный столбец].registration_date,4,2) + "-" + SUBSTRING([Производный столбец].registration_date,1,2))</property>
                       </properties>
                     </inputColumn>
                   </inputColumns>
@@ -5456,25 +5474,37 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
         <NodeLayout
           Size="194.4,41.6"
           Id="Package\Extract data from source"
-          TopLeft="98.3571430548113,83.49999993163" />
+          TopLeft="262.642857690247,159.205882218212" />
         <NodeLayout
           Size="188,41.6"
           Id="Package\TaskCreateTempTables"
           TopLeft="343.571429302802,84.1176469850912" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="292.757143054811,104.608823458361">
+          TopLeft="359.842857690247,159.205882218212">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="50.8142862479908,0"
+              EndConnector="77.7285716125554,-33.4882352331209"
               Start="0,0"
-              End="43.3142862479908,0">
+              End="77.7285716125554,-25.9882352331209">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="43.3142862479908,0" />
+                    End="0,-12.7441176165605" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-12.7441176165605"
+                    Point2="0,-16.7441176165605"
+                    Point3="4,-16.7441176165605" />
+                  <mssgle:LineSegment
+                    End="73.7285716125554,-16.7441176165605" />
+                  <mssgle:CubicBezierSegment
+                    Point1="73.7285716125554,-16.7441176165605"
+                    Point2="77.7285716125554,-16.7441176165605"
+                    Point3="77.7285716125554,-20.7441176165605" />
+                  <mssgle:LineSegment
+                    End="77.7285716125554,-25.9882352331209" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5509,6 +5539,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Execute SQL Task"
+          TopLeft="57.8571429803055,149.117646928116" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -5550,8 +5584,8 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
           Id="Package\Extract data from source\ServerDb"
           TopLeft="547.999991834164,138.799998420477" />
         <NodeLayout
-          Size="116,41.6"
-          Id="Package\Extract data from source\ClentDB"
+          Size="118.4,41.6"
+          Id="Package\Extract data from source\ClientDB"
           TopLeft="547.571420387651,58.1529406914353" />
         <NodeLayout
           Size="155.2,41.6"
@@ -5563,9 +5597,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="302.428564979411,9.27058874678033"
+              EndConnector="302.428564979411,9.2705887467804"
               Start="0,0"
-              End="294.928564979411,9.27058874678033">
+              End="294.928564979411,9.2705887467804">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -5576,13 +5610,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                     Point2="151.214282489705,0"
                     Point3="151.214282489705,4" />
                   <mssgle:LineSegment
-                    End="151.214282489705,5.27058874678033" />
+                    End="151.214282489705,5.2705887467804" />
                   <mssgle:CubicBezierSegment
-                    Point1="151.214282489705,5.27058874678033"
-                    Point2="151.214282489705,9.27058874678033"
-                    Point3="155.214282489705,9.27058874678033" />
+                    Point1="151.214282489705,5.2705887467804"
+                    Point2="151.214282489705,9.2705887467804"
+                    Point3="155.214282489705,9.2705887467804" />
                   <mssgle:LineSegment
-                    End="294.928564979411,9.27058874678033" />
+                    End="294.928564979411,9.2705887467804" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5748,7 +5782,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Extract data from source\ClentDB">
+    design-time-name="Package\Extract data from source\ClientDB">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -5777,7 +5811,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
     design-time-name="Package\Transform">
     <LayoutInfo>
       <GraphLayout
-        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="143.2,41.6"
           Id="Package\Transform\TempSupplier"
@@ -5841,9 +5875,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="30.92514560188,5,41.8711328125,9.6025390625"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5865,9 +5897,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="7.11719236942624,5,49.7156119791667,9.568359375"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5889,9 +5919,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-2.7177081015962,5,41.8711328125,9.6025390625"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5913,9 +5941,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-3.22391853886332,5,55.1756119791667,9.568359375"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5949,9 +5975,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-343.743357141017,21.5333327472212,55.1756119791667,9.568359375"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5973,9 +5997,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="4.47330359250256,5,55.1756119791667,9.568359375"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5997,9 +6019,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="36.4227227844387,5,50.4919791666667,9.568359375"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -6021,9 +6041,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="56.4510801964003,5,55.1756119791667,9.568359375"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -6045,9 +6063,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-11.4933633249999,5,55.1756119791667,9.568359375"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
