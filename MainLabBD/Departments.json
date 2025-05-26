@@ -1,0 +1,10 @@
+[{"DepartmentName":"Sales","EmployeCount":31,"DirectorID":796},
+{"DepartmentName":"Marketing","EmployeCount":54,"DirectorID":496},
+{"DepartmentName":"Finance","EmployeCount":58,"DirectorID":766},
+{"DepartmentName":"HR","EmployeCount":57,"DirectorID":821},
+{"DepartmentName":"IT","EmployeCount":66,"DirectorID":606},
+{"DepartmentName":"Operations","EmployeCount":71,"DirectorID":69},
+{"DepartmentName":"Customer Service","EmployeCount":87,"DirectorID":702},
+{"DepartmentName":"Research","EmployeCount":98,"DirectorID":225},
+{"DepartmentName":"Legal","EmployeCount":27,"DirectorID":994},
+{"DepartmentName":"Administration","EmployeCount":44,"DirectorID":457}]
