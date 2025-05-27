@@ -11,8 +11,8 @@
   DTS:LocaleID="1049"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="125"
-  DTS:VersionGUID="{24E64183-7510-4141-811F-3A032F07B19B}">
+  DTS:VersionBuild="145"
+  DTS:VersionGUID="{47AB8E45-A39F-4235-A65A-9DF65031945E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -2505,7 +2505,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{BAADD3EA-268E-462D-AD4C-538815659EF6}"
           SQLTask:BypassPrepare="False"
-          SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.PersonalInfoEmployees', 'U') IS NULL&#xA;BEGIN&#xA;    CREATE TABLE dbo.PersonalInfoEmployees (&#xA;        EmployeeID INT IDENTITY(1,1) PRIMARY KEY,&#xA;        FirstName NVARCHAR(50) NOT NULL,&#xA;        LastName NVARCHAR(50) NOT NULL,&#xA;        UserName NVARCHAR(50) NOT NULL,&#xA;        [Password] NVARCHAR(255) NOT NULL&#xA;    );&#xA;    PRINT 'Таблица PersonalInfoEmployees создана.';&#xA;END&#xA;ELSE&#xA;BEGIN&#xA;    PRINT 'Таблица PersonalInfoEmployees уже существует.';&#xA;END&#xA;&#xA;IF OBJECT_ID('dbo.Departments', 'U') IS NULL&#xA;BEGIN&#xA;    CREATE TABLE dbo.Departments (&#xA;        DepartmentID INT IDENTITY(1,1) PRIMARY KEY,&#xA;        DepartmentName VARCHAR(100),&#xA;        EmployeeCount INT,&#xA;        DirectorID INT&#xA;    );&#xA;    PRINT 'Таблица Departments создана.';&#xA;END&#xA;ELSE&#xA;BEGIN&#xA;    PRINT 'Таблица Departments уже существует.';&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.PersonalInfoEmployees', 'U') IS NULL&#xA;BEGIN&#xA;    CREATE TABLE dbo.PersonalInfoEmployees (&#xA;        EmployeeID INT IDENTITY(1,1) PRIMARY KEY,&#xA;        FirstName NVARCHAR(50) NOT NULL,&#xA;        LastName NVARCHAR(50) NOT NULL,&#xA;        UserName NVARCHAR(50) NOT NULL,&#xA;        [Password] NVARCHAR(255) NOT NULL&#xA;    );&#xA;    PRINT 'Таблица PersonalInfoEmployees создана.';&#xA;END&#xA;ELSE&#xA;BEGIN&#xA;    PRINT 'Таблица PersonalInfoEmployees уже существует.';&#xA;END&#xA;&#xA;IF OBJECT_ID('dbo.Departments', 'U') IS NULL&#xA;BEGIN&#xA;    CREATE TABLE dbo.Departments (&#xA;        DepartmentID INT IDENTITY(1,1) PRIMARY KEY,&#xA;        DepartmentName VARCHAR(100),&#xA;        EmployeeCount INT,&#xA;        DirectorID INT&#xA;    );&#xA;    PRINT 'Таблица Departments создана.';&#xA;END&#xA;ELSE&#xA;BEGIN&#xA;    PRINT 'Таблица Departments уже существует.';&#xA;END&#xA;&#xA;IF OBJECT_ID('dbo.Projects', 'U') IS NULL&#xA;BEGIN&#xA;    CREATE TABLE dbo.Projects (&#xA;        ProjectID INT IDENTITY(1,1) PRIMARY KEY,&#xA;        ProjectName NVARCHAR(100) NOT NULL,&#xA;        Difficulty NVARCHAR(50),&#xA;        ManagerID INT&#xA;    );&#xA;    PRINT 'Таблица Projects создана.';&#xA;END&#xA;ELSE&#xA;BEGIN&#xA;    PRINT 'Таблица Projects уже существует.';&#xA;END&#xA;&#xA;&#xA;IF OBJECT_ID('dbo.Tasks', 'U') IS NULL&#xA;BEGIN&#xA;    CREATE TABLE dbo.Tasks (&#xA;        TaskID INT IDENTITY(1,1) PRIMARY KEY,&#xA;        TaskName VARCHAR(MAX) NOT NULL,&#xA;        ProjectID INT,&#xA;        Status VARCHAR(50),&#xA;        Difficulty VARCHAR(50)&#xA;    );&#xA;    PRINT 'Таблица Tasks создана.';&#xA;END&#xA;ELSE&#xA;BEGIN&#xA;    PRINT 'Таблица Tasks уже существует.';&#xA;END&#xA;&#xA;&#xA;IF OBJECT_ID('dbo.AnnualReviews', 'U') IS NULL&#xA;BEGIN&#xA;    CREATE TABLE dbo.AnnualReviews (&#xA;        ReviewID INT IDENTITY(1,1) PRIMARY KEY,&#xA;        EmployeeID INT NOT NULL,&#xA;        FinalScore INT,&#xA;        CONSTRAINT FK_AnnualReviews_Employees FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)&#xA;    );&#xA;    PRINT 'Таблица AnnualReviews создана.';&#xA;END&#xA;ELSE&#xA;BEGIN&#xA;    PRINT 'Таблица AnnualReviews уже существует.';&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -3041,6 +3041,329 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
               </outputs>
             </component>
             <component
+              refId="Package\Transform\ProjectsSource"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Источник &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;7"
+              description="Источник &quot;OLE DB&quot;"
+              name="ProjectsSource"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowset">[dbo].[ProjectsDB]</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Команда SQL для выполнения."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Переменная, содержащая команду SQL для выполнения."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает используемый режим доступа к базе данных."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Сопоставления между параметрами в команде SQL и переменными."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Transform\ProjectsSource.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.tempdb]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.tempdb]"
+                  description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Transform\ProjectsSource.Outputs[Выход источника &quot;OLE DB&quot;]"
+                  name="Выход источника &quot;OLE DB&quot;">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\ProjectsSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[ProjectName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform\ProjectsSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[ProjectName]"
+                      length="255"
+                      lineageId="Package\Transform\ProjectsSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[ProjectName]"
+                      name="ProjectName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transform\ProjectsSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Difficulty]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform\ProjectsSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Difficulty]"
+                      length="255"
+                      lineageId="Package\Transform\ProjectsSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Difficulty]"
+                      name="Difficulty"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transform\ProjectsSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[ManagerID]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform\ProjectsSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[ManagerID]"
+                      lineageId="Package\Transform\ProjectsSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[ManagerID]"
+                      name="ManagerID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Transform\ProjectsSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[ProjectName]"
+                      dataType="wstr"
+                      length="255"
+                      name="ProjectName" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\ProjectsSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Difficulty]"
+                      dataType="wstr"
+                      length="255"
+                      name="Difficulty" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\ProjectsSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[ManagerID]"
+                      dataType="r8"
+                      name="ManagerID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Transform\ProjectsSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;]"
+                  isErrorOut="true"
+                  name="Вывод ошибок источника &quot;OLE DB&quot;">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\ProjectsSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ProjectName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Transform\ProjectsSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ProjectName]"
+                      name="ProjectName" />
+                    <outputColumn
+                      refId="Package\Transform\ProjectsSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Difficulty]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Transform\ProjectsSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Difficulty]"
+                      name="Difficulty" />
+                    <outputColumn
+                      refId="Package\Transform\ProjectsSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ManagerID]"
+                      dataType="r8"
+                      lineageId="Package\Transform\ProjectsSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ManagerID]"
+                      name="ManagerID" />
+                    <outputColumn
+                      refId="Package\Transform\ProjectsSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transform\ProjectsSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transform\ProjectsSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transform\ProjectsSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transform\TasksSource"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Источник &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;7"
+              description="Источник &quot;OLE DB&quot;"
+              name="TasksSource"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowset">[dbo].[TasksDB]</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Команда SQL для выполнения."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Переменная, содержащая команду SQL для выполнения."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает используемый режим доступа к базе данных."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Сопоставления между параметрами в команде SQL и переменными."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Transform\TasksSource.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.tempdb]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.tempdb]"
+                  description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;]"
+                  name="Выход источника &quot;OLE DB&quot;">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[TaskName]"
+                      codePage="1251"
+                      dataType="text"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[TaskName]"
+                      lineageId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[TaskName]"
+                      name="TaskName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[ProjectID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[ProjectID]"
+                      lineageId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[ProjectID]"
+                      name="ProjectID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Status]"
+                      codePage="1251"
+                      dataType="str"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Status]"
+                      length="11"
+                      lineageId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Status]"
+                      name="Status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Difficulty]"
+                      codePage="1251"
+                      dataType="str"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Difficulty]"
+                      length="6"
+                      lineageId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Difficulty]"
+                      name="Difficulty"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[TaskName]"
+                      codePage="1251"
+                      dataType="text"
+                      name="TaskName" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[ProjectID]"
+                      dataType="i4"
+                      name="ProjectID" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Status]"
+                      codePage="1251"
+                      dataType="str"
+                      length="11"
+                      name="Status" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Difficulty]"
+                      codePage="1251"
+                      dataType="str"
+                      length="6"
+                      name="Difficulty" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Transform\TasksSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;]"
+                  isErrorOut="true"
+                  name="Вывод ошибок источника &quot;OLE DB&quot;">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\TasksSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[TaskName]"
+                      codePage="1251"
+                      dataType="text"
+                      lineageId="Package\Transform\TasksSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[TaskName]"
+                      name="TaskName" />
+                    <outputColumn
+                      refId="Package\Transform\TasksSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ProjectID]"
+                      dataType="i4"
+                      lineageId="Package\Transform\TasksSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ProjectID]"
+                      name="ProjectID" />
+                    <outputColumn
+                      refId="Package\Transform\TasksSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Status]"
+                      codePage="1251"
+                      dataType="str"
+                      length="11"
+                      lineageId="Package\Transform\TasksSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Status]"
+                      name="Status" />
+                    <outputColumn
+                      refId="Package\Transform\TasksSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Difficulty]"
+                      codePage="1251"
+                      dataType="str"
+                      length="6"
+                      lineageId="Package\Transform\TasksSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Difficulty]"
+                      name="Difficulty" />
+                    <outputColumn
+                      refId="Package\Transform\TasksSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transform\TasksSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transform\TasksSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transform\TasksSource.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Transform\TempPersonalInfoEmployees"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="Назначение &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;4"
@@ -3196,6 +3519,342 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
               </outputs>
             </component>
             <component
+              refId="Package\Transform\Многоадресная рассылка"
+              componentClassID="Microsoft.Multicast"
+              contactInfo="Многоадресная рассылка;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;0"
+              description="Распределяет все входные строки между всеми строками в одном или нескольких выходах. Пример: разбиение потока данных на ветви, чтобы создать копию данных, в которой некоторые значения перед передачей внешним партнерам будут скрыты."
+              name="Многоадресная рассылка">
+              <inputs>
+                <input
+                  refId="Package\Transform\Многоадресная рассылка.Inputs[Многоадресная рассылка Вход 1]"
+                  name="Многоадресная рассылка Вход 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transform\Многоадресная рассылка.Outputs[Многоадресная рассылка Выход 1]"
+                  deleteOutputOnPathDetached="true"
+                  name="Многоадресная рассылка Выход 1"
+                  synchronousInputId="Package\Transform\Многоадресная рассылка.Inputs[Многоадресная рассылка Вход 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Transform\Многоадресная рассылка.Outputs[Выход многоадресной рассылки 2]"
+                  deleteOutputOnPathDetached="true"
+                  name="Выход многоадресной рассылки 2"
+                  synchronousInputId="Package\Transform\Многоадресная рассылка.Inputs[Многоадресная рассылка Вход 1]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Transform\Многоадресная рассылка.Outputs[Выход многоадресной рассылки 1]"
+                  dangling="true"
+                  deleteOutputOnPathDetached="true"
+                  name="Выход многоадресной рассылки 1"
+                  synchronousInputId="Package\Transform\Многоадресная рассылка.Inputs[Многоадресная рассылка Вход 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transform\Назначение &quot;OLE DB&quot;"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Назначение &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;4"
+              description="Назначение &quot;OLE DB&quot;"
+              name="Назначение &quot;OLE DB&quot;"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowset">[dbo].[Projects]</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Команда SQL для выполнения."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает используемый режим доступа к базе данных."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Указывает, должны ли значения в столбцах идентификаторов копироваться в назначение. Если свойство имеет значение false, значения в столбцах идентификаторов будут созданы автоматически в месте назначения. Применяется только в том случае, если включена быстрая загрузка."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Указывает, будут ли в назначение вставляться значения NULL для столбцов, содержащих их. Значение false показывает, что если столбец имеет значение NULL, то в назначение будет вставлено его значение по умолчанию. Применяется только в случае, если включена быстрая загрузка."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Задает параметры быстрой загрузки. Применяется только в том случае, если включена быстрая загрузка."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Задает, когда выдаются сообщения о фиксации транзакции в ходе вставки данных. Значение 0 задает, что по окончании вставки данных будет выдано одно сообщение о фиксации транзакции. Применяется только в том случае, если включена быстрая загрузка."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Transform\Назначение &quot;OLE DB&quot;.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.tempdb]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.tempdb]"
+                  description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Transform\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;]"
+                  errorOrTruncationOperation="Вставить"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Вход назначения &quot;OLE DB&quot;">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Transform\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[Difficulty_dest]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Difficulty_dest"
+                      externalMetadataColumnId="Package\Transform\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Difficulty]"
+                      lineageId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные преобразования данных].Columns[Difficulty_dest]" />
+                    <inputColumn
+                      refId="Package\Transform\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[ManagerID_dest]"
+                      cachedDataType="i4"
+                      cachedName="ManagerID_dest"
+                      externalMetadataColumnId="Package\Transform\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[ManagerID]"
+                      lineageId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные преобразования данных].Columns[ManagerID_dest]" />
+                    <inputColumn
+                      refId="Package\Transform\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[ProjectName_dest]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="ProjectName_dest"
+                      externalMetadataColumnId="Package\Transform\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[ProjectName]"
+                      lineageId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные преобразования данных].Columns[ProjectName_dest]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Transform\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[ProjectID]"
+                      dataType="i4"
+                      name="ProjectID" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[ProjectName]"
+                      dataType="wstr"
+                      length="100"
+                      name="ProjectName" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Difficulty]"
+                      dataType="wstr"
+                      length="50"
+                      name="Difficulty" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[ManagerID]"
+                      dataType="i4"
+                      name="ManagerID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transform\Назначение &quot;OLE DB&quot;.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Вывод ошибок назначения &quot;OLE DB&quot;"
+                  synchronousInputId="Package\Transform\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\Назначение &quot;OLE DB&quot;.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transform\Назначение &quot;OLE DB&quot;.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transform\Назначение &quot;OLE DB&quot;.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transform\Назначение &quot;OLE DB&quot;.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transform\Назначение &quot;OLE DB&quot; 1"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Назначение &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;4"
+              description="Назначение &quot;OLE DB&quot;"
+              name="Назначение &quot;OLE DB&quot; 1"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowset">[dbo].[Tasks]</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Команда SQL для выполнения."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает используемый режим доступа к базе данных."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Указывает, должны ли значения в столбцах идентификаторов копироваться в назначение. Если свойство имеет значение false, значения в столбцах идентификаторов будут созданы автоматически в месте назначения. Применяется только в том случае, если включена быстрая загрузка."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Указывает, будут ли в назначение вставляться значения NULL для столбцов, содержащих их. Значение false показывает, что если столбец имеет значение NULL, то в назначение будет вставлено его значение по умолчанию. Применяется только в случае, если включена быстрая загрузка."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Задает параметры быстрой загрузки. Применяется только в том случае, если включена быстрая загрузка."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Задает, когда выдаются сообщения о фиксации транзакции в ходе вставки данных. Значение 0 задает, что по окончании вставки данных будет выдано одно сообщение о фиксации транзакции. Применяется только в том случае, если включена быстрая загрузка."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Transform\Назначение &quot;OLE DB&quot; 1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.tempdb]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.tempdb]"
+                  description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Transform\Назначение &quot;OLE DB&quot; 1.Inputs[Вход назначения &quot;OLE DB&quot;]"
+                  errorOrTruncationOperation="Вставить"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Вход назначения &quot;OLE DB&quot;">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Transform\Назначение &quot;OLE DB&quot; 1.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[TaskName]"
+                      cachedCodepage="1251"
+                      cachedDataType="text"
+                      cachedName="TaskName"
+                      externalMetadataColumnId="Package\Transform\Назначение &quot;OLE DB&quot; 1.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[TaskName]"
+                      lineageId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[TaskName]" />
+                    <inputColumn
+                      refId="Package\Transform\Назначение &quot;OLE DB&quot; 1.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[ProjectID]"
+                      cachedDataType="i4"
+                      cachedName="ProjectID"
+                      externalMetadataColumnId="Package\Transform\Назначение &quot;OLE DB&quot; 1.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[ProjectID]"
+                      lineageId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[ProjectID]" />
+                    <inputColumn
+                      refId="Package\Transform\Назначение &quot;OLE DB&quot; 1.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[Status]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="11"
+                      cachedName="Status"
+                      externalMetadataColumnId="Package\Transform\Назначение &quot;OLE DB&quot; 1.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Status]"
+                      lineageId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Status]" />
+                    <inputColumn
+                      refId="Package\Transform\Назначение &quot;OLE DB&quot; 1.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[Difficulty]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="Difficulty"
+                      externalMetadataColumnId="Package\Transform\Назначение &quot;OLE DB&quot; 1.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Difficulty]"
+                      lineageId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Difficulty]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Transform\Назначение &quot;OLE DB&quot; 1.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[TaskID]"
+                      dataType="i4"
+                      name="TaskID" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\Назначение &quot;OLE DB&quot; 1.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[TaskName]"
+                      codePage="1251"
+                      dataType="text"
+                      name="TaskName" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\Назначение &quot;OLE DB&quot; 1.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[ProjectID]"
+                      dataType="i4"
+                      name="ProjectID" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\Назначение &quot;OLE DB&quot; 1.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Status]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      name="Status" />
+                    <externalMetadataColumn
+                      refId="Package\Transform\Назначение &quot;OLE DB&quot; 1.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Difficulty]"
+                      codePage="1251"
+                      dataType="str"
+                      length="50"
+                      name="Difficulty" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transform\Назначение &quot;OLE DB&quot; 1.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Вывод ошибок назначения &quot;OLE DB&quot;"
+                  synchronousInputId="Package\Transform\Назначение &quot;OLE DB&quot; 1.Inputs[Вход назначения &quot;OLE DB&quot;]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\Назначение &quot;OLE DB&quot; 1.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transform\Назначение &quot;OLE DB&quot; 1.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transform\Назначение &quot;OLE DB&quot; 1.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transform\Назначение &quot;OLE DB&quot; 1.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Transform\Преобразование данных"
               componentClassID="Microsoft.DataConvert"
               contactInfo="Преобразование данных;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;0"
@@ -3323,6 +3982,135 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
               </outputs>
             </component>
             <component
+              refId="Package\Transform\Преобразование данных 1"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Преобразование данных;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;0"
+              description="Преобразование данных"
+              name="Преобразование данных 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Transform\Преобразование данных 1.Inputs[Входные данные преобразования данных]"
+                  name="Входные данные преобразования данных">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Transform\Преобразование данных 1.Inputs[Входные данные преобразования данных].Columns[ProjectName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ProjectName"
+                      lineageId="Package\Transform\ProjectsSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[ProjectName]" />
+                    <inputColumn
+                      refId="Package\Transform\Преобразование данных 1.Inputs[Входные данные преобразования данных].Columns[Difficulty]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Difficulty"
+                      lineageId="Package\Transform\ProjectsSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Difficulty]" />
+                    <inputColumn
+                      refId="Package\Transform\Преобразование данных 1.Inputs[Входные данные преобразования данных].Columns[ManagerID]"
+                      cachedDataType="r8"
+                      cachedName="ManagerID"
+                      lineageId="Package\Transform\ProjectsSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[ManagerID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные преобразования данных]"
+                  exclusionGroup="1"
+                  name="Выходные данные преобразования данных"
+                  synchronousInputId="Package\Transform\Преобразование данных 1.Inputs[Входные данные преобразования данных]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные преобразования данных].Columns[ProjectName_dest]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные преобразования данных].Columns[ProjectName_dest]"
+                      name="ProjectName_dest"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает входной столбец, служащий источником данных для преобразования."
+                          name="SourceInputColumnLineageID">#{Package\Transform\ProjectsSource.Outputs[Выход источника "OLE DB"].Columns[ProjectName]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Указывает, используются ли в столбце более производительные, не зависящие от локалей процедуры синтаксического анализа."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные преобразования данных].Columns[Difficulty_dest]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные преобразования данных].Columns[Difficulty_dest]"
+                      name="Difficulty_dest"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает входной столбец, служащий источником данных для преобразования."
+                          name="SourceInputColumnLineageID">#{Package\Transform\ProjectsSource.Outputs[Выход источника "OLE DB"].Columns[Difficulty]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Указывает, используются ли в столбце более производительные, не зависящие от локалей процедуры синтаксического анализа."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные преобразования данных].Columns[ManagerID_dest]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные преобразования данных].Columns[ManagerID_dest]"
+                      name="ManagerID_dest"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Указывает входной столбец, служащий источником данных для преобразования."
+                          name="SourceInputColumnLineageID">#{Package\Transform\ProjectsSource.Outputs[Выход источника "OLE DB"].Columns[ManagerID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Указывает, используются ли в столбце более производительные, не зависящие от локалей процедуры синтаксического анализа."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные ошибок преобразования данных]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Выходные данные ошибок преобразования данных"
+                  synchronousInputId="Package\Transform\Преобразование данных 1.Inputs[Входные данные преобразования данных]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные ошибок преобразования данных].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные ошибок преобразования данных].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные ошибок преобразования данных].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные ошибок преобразования данных].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Transform\Производный столбец"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Производный столбец;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;0"
@@ -3427,6 +4215,156 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                 </output>
               </outputs>
             </component>
+            <component
+              refId="Package\Transform\Производный столбец 1"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Производный столбец;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;0"
+              description="Создает новые значения столбцов путем применения выражений к входным столбцам преобразования. Создает новые столбцы или перезаписывает существующие. Пример: объединение значений столбцов &quot;first name&quot; и &quot;last name&quot; и создание столбца &quot;full name&quot;."
+              name="Производный столбец 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Transform\Производный столбец 1.Inputs[Вход производного столбца]"
+                  description="Ввод преобразования &quot;Производный столбец&quot;"
+                  name="Вход производного столбца">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Transform\Производный столбец 1.Inputs[Вход производного столбца].Columns[Status]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="11"
+                      cachedName="Status"
+                      errorOrTruncationOperation="Вычисление"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Status]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Выражение производного столбца"
+                          name="Expression">[SUBSTRING](#{Package\Transform\TasksSource.Outputs[Выход источника "OLE DB"].Columns[Status]},1,50)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Понятное выражение производного столбца"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING(Status,1,50)</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Transform\Производный столбец 1.Inputs[Вход производного столбца].Columns[Difficulty]"
+                      cachedCodepage="1251"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="Difficulty"
+                      errorOrTruncationOperation="Вычисление"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Difficulty]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Выражение производного столбца"
+                          name="Expression">[SUBSTRING](#{Package\Transform\TasksSource.Outputs[Выход источника "OLE DB"].Columns[Difficulty]},1,50)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Понятное выражение производного столбца"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING(Difficulty,1,50)</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transform\Производный столбец 1.Outputs[Выход производного столбца]"
+                  description="Выход по умолчанию преобразования &quot;Производный столбец&quot;"
+                  exclusionGroup="1"
+                  name="Выход производного столбца"
+                  synchronousInputId="Package\Transform\Производный столбец 1.Inputs[Вход производного столбца]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Transform\Производный столбец 1.Outputs[Вывод ошибок производного столбца]"
+                  description="Вывод ошибок преобразования &quot;Производный столбец&quot;"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Вывод ошибок производного столбца"
+                  synchronousInputId="Package\Transform\Производный столбец 1.Inputs[Вход производного столбца]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\Производный столбец 1.Outputs[Вывод ошибок производного столбца].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transform\Производный столбец 1.Outputs[Вывод ошибок производного столбца].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transform\Производный столбец 1.Outputs[Вывод ошибок производного столбца].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transform\Производный столбец 1.Outputs[Вывод ошибок производного столбца].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Transform\Производный столбец 2"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Производный столбец;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;0"
+              description="Создает новые значения столбцов путем применения выражений к входным столбцам преобразования. Создает новые столбцы или перезаписывает существующие. Пример: объединение значений столбцов &quot;first name&quot; и &quot;last name&quot; и создание столбца &quot;full name&quot;."
+              name="Производный столбец 2"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Transform\Производный столбец 2.Inputs[Вход производного столбца]"
+                  description="Ввод преобразования &quot;Производный столбец&quot;"
+                  name="Вход производного столбца">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transform\Производный столбец 2.Outputs[Выход производного столбца]"
+                  description="Выход по умолчанию преобразования &quot;Производный столбец&quot;"
+                  exclusionGroup="1"
+                  name="Выход производного столбца"
+                  synchronousInputId="Package\Transform\Производный столбец 2.Inputs[Вход производного столбца]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Transform\Производный столбец 2.Outputs[Вывод ошибок производного столбца]"
+                  description="Вывод ошибок преобразования &quot;Производный столбец&quot;"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Вывод ошибок производного столбца"
+                  synchronousInputId="Package\Transform\Производный столбец 2.Inputs[Вход производного столбца]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform\Производный столбец 2.Outputs[Вывод ошибок производного столбца].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transform\Производный столбец 2.Outputs[Вывод ошибок производного столбца].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transform\Производный столбец 2.Outputs[Вывод ошибок производного столбца].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transform\Производный столбец 2.Outputs[Вывод ошибок производного столбца].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
           </components>
           <paths>
             <path
@@ -3440,16 +4378,189 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
               name="Выход источника &quot;OLE DB&quot;"
               startId="Package\Transform\DepartamentsSource.Outputs[Выход источника &quot;OLE DB&quot;]" />
             <path
+              refId="Package\Transform.Paths[Выход источника &quot;OLE DB&quot;2]"
+              endId="Package\Transform\Преобразование данных 1.Inputs[Входные данные преобразования данных]"
+              name="Выход источника &quot;OLE DB&quot;"
+              startId="Package\Transform\ProjectsSource.Outputs[Выход источника &quot;OLE DB&quot;]" />
+            <path
+              refId="Package\Transform.Paths[Выход источника &quot;OLE DB&quot;3]"
+              endId="Package\Transform\Производный столбец 1.Inputs[Вход производного столбца]"
+              name="Выход источника &quot;OLE DB&quot;"
+              startId="Package\Transform\TasksSource.Outputs[Выход источника &quot;OLE DB&quot;]" />
+            <path
+              refId="Package\Transform.Paths[Выход многоадресной рассылки 2]"
+              endId="Package\Transform\Производный столбец 2.Inputs[Вход производного столбца]"
+              name="Выход многоадресной рассылки 2"
+              startId="Package\Transform\Многоадресная рассылка.Outputs[Выход многоадресной рассылки 2]" />
+            <path
               refId="Package\Transform.Paths[Выход производного столбца]"
               endId="Package\Transform\Преобразование данных.Inputs[Входные данные преобразования данных]"
               name="Выход производного столбца"
               startId="Package\Transform\Производный столбец.Outputs[Выход производного столбца]" />
             <path
+              refId="Package\Transform.Paths[Выход производного столбца1]"
+              endId="Package\Transform\Назначение &quot;OLE DB&quot; 1.Inputs[Вход назначения &quot;OLE DB&quot;]"
+              name="Выход производного столбца"
+              startId="Package\Transform\Производный столбец 1.Outputs[Выход производного столбца]" />
+            <path
               refId="Package\Transform.Paths[Выходные данные преобразования данных]"
-              endId="Package\Transform\TempPersonalInfoEmployees.Inputs[Вход назначения &quot;OLE DB&quot;]"
+              endId="Package\Transform\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;]"
+              name="Выходные данные преобразования данных"
+              startId="Package\Transform\Преобразование данных 1.Outputs[Выходные данные преобразования данных]" />
+            <path
+              refId="Package\Transform.Paths[Выходные данные преобразования данных1]"
+              endId="Package\Transform\Многоадресная рассылка.Inputs[Многоадресная рассылка Вход 1]"
               name="Выходные данные преобразования данных"
               startId="Package\Transform\Преобразование данных.Outputs[Выходные данные преобразования данных]" />
+            <path
+              refId="Package\Transform.Paths[Многоадресная рассылка Выход 1]"
+              endId="Package\Transform\TempPersonalInfoEmployees.Inputs[Вход назначения &quot;OLE DB&quot;]"
+              name="Многоадресная рассылка Выход 1"
+              startId="Package\Transform\Многоадресная рассылка.Outputs[Многоадресная рассылка Выход 1]" />
           </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Transform 2"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Задача потока данных"
+      DTS:DTSID="{96078D94-B349-43E4-8741-00A54947A14B}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Transform 2"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Transform 2\Назначение &quot;OLE DB&quot;"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Назначение &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;4"
+              description="Назначение &quot;OLE DB&quot;"
+              name="Назначение &quot;OLE DB&quot;"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowset">[dbo].[PersonalInfoEmployees]</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Команда SQL для выполнения."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает используемый режим доступа к базе данных."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Указывает, должны ли значения в столбцах идентификаторов копироваться в назначение. Если свойство имеет значение false, значения в столбцах идентификаторов будут созданы автоматически в месте назначения. Применяется только в том случае, если включена быстрая загрузка."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Указывает, будут ли в назначение вставляться значения NULL для столбцов, содержащих их. Значение false показывает, что если столбец имеет значение NULL, то в назначение будет вставлено его значение по умолчанию. Применяется только в случае, если включена быстрая загрузка."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Задает параметры быстрой загрузки. Применяется только в том случае, если включена быстрая загрузка."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Задает, когда выдаются сообщения о фиксации транзакции в ходе вставки данных. Значение 0 задает, что по окончании вставки данных будет выдано одно сообщение о фиксации транзакции. Применяется только в том случае, если включена быстрая загрузка."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Transform 2\Назначение &quot;OLE DB&quot;.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.tempdb]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.tempdb]"
+                  description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Transform 2\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;]"
+                  errorOrTruncationOperation="Вставить"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Вход назначения &quot;OLE DB&quot;">
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Transform 2\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[EmployeeID]"
+                      dataType="i4"
+                      name="EmployeeID" />
+                    <externalMetadataColumn
+                      refId="Package\Transform 2\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="50"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Transform 2\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="50"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Transform 2\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[UserName]"
+                      dataType="wstr"
+                      length="50"
+                      name="UserName" />
+                    <externalMetadataColumn
+                      refId="Package\Transform 2\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Password]"
+                      dataType="wstr"
+                      length="255"
+                      name="Password" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Transform 2\Назначение &quot;OLE DB&quot;.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Вывод ошибок назначения &quot;OLE DB&quot;"
+                  synchronousInputId="Package\Transform 2\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Transform 2\Назначение &quot;OLE DB&quot;.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Transform 2\Назначение &quot;OLE DB&quot;.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Transform 2\Назначение &quot;OLE DB&quot;.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Transform 2\Назначение &quot;OLE DB&quot;.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
@@ -3519,6 +4630,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\Transform" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{4366BADA-BF19-440E-B891-1C5CB9FB4F21}"
+      DTS:From="Package\Transform"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Transform 2" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -3531,7 +4650,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib">
         <NodeLayout
           Size="162.4,41.6"
           Id="Package\Execute SQL Task"
@@ -3539,11 +4658,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
         <NodeLayout
           Size="194.4,41.6"
           Id="Package\Extract data from source"
-          TopLeft="49.0714286641809,109.49999990884" />
+          TopLeft="13.3571428738689,107.970588145475" />
         <NodeLayout
           Size="188,41.6"
           Id="Package\TaskCreateTempTables"
-          TopLeft="342.857143586996,84.1176469850912" />
+          TopLeft="241.42857194251,113.176470489032" />
         <NodeLayout
           Size="188.8,41.6"
           Id="Package\Задача потока данных"
@@ -3556,36 +4675,20 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           Size="198.4,41.6"
           Id="Package\Задача потока данных 2"
           TopLeft="495.000001053725,155.235293981577" />
-        <NodeLayout
-          Size="126.4,41.6"
-          Id="Package\Transform"
-          TopLeft="585.714286961118,80.2941175766779" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="243.471428664181,130.29999990884">
+          TopLeft="207.757142873869,131.373529317253">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="99.3857149228151,-25.3823529237488"
+              EndConnector="33.6714290686408,0"
               Start="0,0"
-              End="91.8857149228151,-25.3823529237488">
+              End="26.1714290686408,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="45.6928574614076,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="45.6928574614076,0"
-                    Point2="49.6928574614076,0"
-                    Point3="49.6928574614076,-4" />
-                  <mssgle:LineSegment
-                    End="49.6928574614076,-21.3823529237488" />
-                  <mssgle:CubicBezierSegment
-                    Point1="49.6928574614076,-21.3823529237488"
-                    Point2="49.6928574614076,-25.3823529237488"
-                    Point3="53.6928574614076,-25.3823529237488" />
-                  <mssgle:LineSegment
-                    End="91.8857149228151,-25.3823529237488" />
+                    End="26.1714290686408,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3596,18 +4699,30 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="530.857143586996,103.005882280885">
+          TopLeft="429.42857194251,133.976470489032">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="54.857143374122,0"
+              EndConnector="208.17142805749,-52.3764704890317"
               Start="0,0"
-              End="47.357143374122,0">
+              End="200.67142805749,-52.3764704890317">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="47.357143374122,0" />
+                    End="100.085714028745,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="100.085714028745,0"
+                    Point2="104.085714028745,0"
+                    Point3="104.085714028745,-4" />
+                  <mssgle:LineSegment
+                    End="104.085714028745,-48.3764704890317" />
+                  <mssgle:CubicBezierSegment
+                    Point1="104.085714028745,-48.3764704890317"
+                    Point2="104.085714028745,-52.3764704890317"
+                    Point3="108.085714028745,-52.3764704890317" />
+                  <mssgle:LineSegment
+                    End="200.67142805749,-52.3764704890317" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3616,6 +4731,63 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="126.4,41.6"
+          Id="Package\Transform"
+          TopLeft="57.6428572538557,12.3823529351438" />
+        <NodeLayout
+          Size="136,41.6"
+          Id="Package\Transform 2"
+          TopLeft="21.4285727088551,89.6117645845591" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="120.842857253856,53.9823529351438">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-31.4142845450006,35.6294116494152"
+              Start="0,0"
+              End="-31.4142845450006,28.1294116494152">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.8147058247076" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.8147058247076"
+                    Point2="0,17.8147058247076"
+                    Point3="-4,17.8147058247076" />
+                  <mssgle:LineSegment
+                    End="-27.4142845450006,17.8147058247076" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-27.4142845450006,17.8147058247076"
+                    Point2="-31.4142845450006,17.8147058247076"
+                    Point3="-31.4142845450006,21.8147058247076" />
+                  <mssgle:LineSegment
+                    End="-31.4142845450006,28.1294116494152" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <GroupLayout
+          Text="Transform Parth"
+          ParentId="Package"
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="250.4,186.4"
+          Size="250.4,229.6"
+          Id="78f39434-ae59-4cdc-86d5-cda6530865ae"
+          TopLeft="580.214286961118,5.5">
+          <GroupLayout.ChildrenIds>
+            <s:String>Package\Transform</s:String>
+            <s:String>Package\Transform 2</s:String>
+            <s:String>Package.PrecedenceConstraints[Constraint 2]</s:String>
+          </GroupLayout.ChildrenIds>
+        </GroupLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -3840,7 +5012,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
     design-time-name="Package\Transform">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="156,41.6"
           Id="Package\Transform\EmployeeSource"
@@ -3874,21 +5046,21 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
         <NodeLayout
           Size="199.2,41.6"
           Id="Package\Transform\Преобразование данных"
-          TopLeft="474.933334340936,67.2745098711744" />
+          TopLeft="473.742858147925,67.2745098711744" />
         <EdgeLayout
           Id="Package\Transform.Paths[Выход производного столбца]"
           TopLeft="412.371429047353,90.1986928758484">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="62.5619052935822,0"
+              EndConnector="61.3714291005717,0"
               Start="0,0"
-              End="55.0619052935822,0">
+              End="53.8714291005717,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="55.0619052935822,0" />
+                    End="53.8714291005717,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3900,7 +5072,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
         <NodeLayout
           Size="214.4,41.6"
           Id="Package\Transform\TempPersonalInfoEmployees"
-          TopLeft="728.39002397084,63.2399625962951" />
+          TopLeft="878.390024290151,84.9066292439701" />
         <NodeLayout
           Size="176.8,41.6"
           Id="Package\Transform\DepartamentsSource"
@@ -3909,28 +5081,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           Size="144.8,41.6"
           Id="Package\Transform\Departaments"
           TopLeft="525.510205200306,151.848739362697" />
-        <EdgeLayout
-          Id="Package\Transform.Paths[Выходные данные преобразования данных]"
-          TopLeft="674.133334340936,86.0572362337348">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="54.2566896299043,0"
-              Start="0,0"
-              End="46.7566896299043,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="46.7566896299043,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\Transform.Paths[Выход источника &quot;OLE DB&quot;1]"
           TopLeft="227.820408271874,171.010083901949">
@@ -3945,6 +5095,222 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="290.189796928432,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="148,41.6"
+          Id="Package\Transform\ProjectsSource"
+          TopLeft="53.0612246027493,240.336134243118" />
+        <NodeLayout
+          Size="208.8,41.6"
+          Id="Package\Transform\Преобразование данных 1"
+          TopLeft="288.775510818809,233.781512400124" />
+        <EdgeLayout
+          Id="Package\Transform.Paths[Выход источника &quot;OLE DB&quot;2]"
+          TopLeft="201.061224602749,257.858823321621">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="87.7142862160596,0"
+              Start="0,0"
+              End="80.2142862160596,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="80.2142862160596,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="184,41.6"
+          Id="Package\Transform\Назначение &quot;OLE DB&quot;"
+          TopLeft="702.040817820991,234.873949373956" />
+        <EdgeLayout
+          Id="Package\Transform.Paths[Выходные данные преобразования данных]"
+          TopLeft="497.575510818809,255.12773088704">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="204.465307002182,0"
+              Start="0,0"
+              End="196.965307002182,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="196.965307002182,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="136.8,41.6"
+          Id="Package\Transform\TasksSource"
+          TopLeft="75.3401362148011,301.512604777729" />
+        <NodeLayout
+          Size="196.8,41.6"
+          Id="Package\Transform\Производный столбец 1"
+          TopLeft="288.605442791236,300.969187458341" />
+        <EdgeLayout
+          Id="Package\Transform.Paths[Выход источника &quot;OLE DB&quot;3]"
+          TopLeft="212.140136214801,322.040896118035">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="76.4653065764352,0"
+              Start="0,0"
+              End="68.9653065764352,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="68.9653065764352,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="193.6,41.6"
+          Id="Package\Transform\Назначение &quot;OLE DB&quot; 1"
+          TopLeft="661.904763313783,305.882352673059" />
+        <EdgeLayout
+          Id="Package\Transform.Paths[Выход производного столбца1]"
+          TopLeft="485.405442791236,324.2257700657">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="176.499320522547,0"
+              Start="0,0"
+              End="168.999320522547,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="168.999320522547,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="202.4,41.6"
+          Id="Package\Transform\Многоадресная рассылка"
+          TopLeft="723.809525350324,148.803921482606" />
+        <EdgeLayout
+          Id="Package\Transform.Paths[Выходные данные преобразования данных1]"
+          TopLeft="573.342858147925,108.874509871174">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="251.666667202399,39.9294116114319"
+              Start="0,0"
+              End="251.666667202399,32.4294116114319">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.964705805716" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.964705805716"
+                    Point2="0,19.964705805716"
+                    Point3="4,19.964705805716" />
+                  <mssgle:LineSegment
+                    End="247.666667202399,19.964705805716" />
+                  <mssgle:CubicBezierSegment
+                    Point1="247.666667202399,19.964705805716"
+                    Point2="251.666667202399,19.964705805716"
+                    Point3="251.666667202399,23.964705805716" />
+                  <mssgle:LineSegment
+                    End="251.666667202399,32.4294116114319" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Transform.Paths[Многоадресная рассылка Выход 1]"
+          TopLeft="857.409525350324,148.803921482606">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="20.9804989398261,-43.0972922386363"
+              Start="0,0"
+              End="13.4804989398261,-43.0972922386363">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-39.0972922386363" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-39.0972922386363"
+                    Point2="0,-43.0972922386363"
+                    Point3="4,-43.0972922386363" />
+                  <mssgle:LineSegment
+                    End="13.4804989398261,-43.0972922386363" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="196.8,41.6"
+          Id="Package\Transform\Производный столбец 2"
+          TopLeft="908.333335266937,248.52941154686" />
+        <EdgeLayout
+          Id="Package\Transform.Paths[Выход многоадресной рассылки 2]"
+          TopLeft="825.009525350324,190.403921482606">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="181.723809916612,58.1254900642539"
+              Start="0,0"
+              End="181.723809916612,50.6254900642539">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.0627450321269" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.0627450321269"
+                    Point2="0,29.0627450321269"
+                    Point3="4,29.0627450321269" />
+                  <mssgle:LineSegment
+                    End="177.723809916612,29.0627450321269" />
+                  <mssgle:CubicBezierSegment
+                    Point1="177.723809916612,29.0627450321269"
+                    Point2="181.723809916612,29.0627450321269"
+                    Point3="181.723809916612,33.0627450321269" />
+                  <mssgle:LineSegment
+                    End="181.723809916612,50.6254900642539" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4010,6 +5376,83 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Extract data from source\DepartamentsDB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Transform\ProjectsSource">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Transform\Назначение &quot;OLE DB&quot;">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Transform\TasksSource">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Transform\Назначение &quot;OLE DB&quot; 1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Transform 2">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="184,41.6"
+          Id="Package\Transform 2\Назначение &quot;OLE DB&quot;"
+          TopLeft="150.999997749925,98.999998524785" />
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Transform 2\Назначение &quot;OLE DB&quot;">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
